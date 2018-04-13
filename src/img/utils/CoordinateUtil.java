@@ -92,6 +92,7 @@ public class CoordinateUtil {
         double degrees = 0;
         if(x == 0 && y == 0){
             degrees = 0;
+            pixel.setAngleCooefficient(0);
         }
 
         if (x == 0){
@@ -112,8 +113,10 @@ public class CoordinateUtil {
 
         int signFactor = 1;
         if (x == 0 || y == 0){
+            pixel.setAngleCooefficient(0);
             degrees =  Math.atan(0);
         } else if((y / x) < 0) {
+            pixel.setAngleCooefficient(y/x);
             signFactor = -1;
         }
 
@@ -144,6 +147,9 @@ public class CoordinateUtil {
     }
 
     public static double angleDifference(double a, double b){
+        if (a*b == 1) {
+            return 0;
+        }
         return Math.atan((a - b) / (1 + (a * b)));
     }
 

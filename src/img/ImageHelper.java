@@ -31,13 +31,13 @@ public class ImageHelper {
 
         for (int i = 0; i < pixels.length; i=i+1) {
             pixel = new Pixel();
-            pixel.setPixelValue(pixels[i]);
+            pixel.setPixelValue(pixels[i] < 0 ? 65336 + pixels[i] : pixels[i]);
             pixel.setX(row);
             pixel.setY(col);
             data[row][col] = pixels[i];
             columnPixels.add(pixel);
 
-            System.out.println("("+row+","+col+") : " + pixels[i]);
+//            System.out.println("("+row+","+col+") : " + data[row][col]);
             row++;
             if (row == blockSize) {
                 col++;

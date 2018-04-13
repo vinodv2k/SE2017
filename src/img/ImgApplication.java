@@ -12,7 +12,7 @@ import java.util.List;
 public class ImgApplication {
     public static void main(String[] args) throws Exception {
         Request request = new Request();
-        request.setStandardDeviation(1);
+        request.setStandardDeviation(2);
         request.setFilePath("./img/sample.tif");
 
         SolarCenter.solarCenterX = 66;
@@ -20,9 +20,6 @@ public class ImgApplication {
 
         Processor processor = new Processor();
         processor.processCorona(request);
-//        testOnlyOnePixel();
-
-//        testAngles();
     }
 
     public static void testAngles(){

@@ -8,11 +8,13 @@ import java.util.List;
 
 public class FilterUtil {
     public static double calculateKernel(Pixel neighbourPixel, Pixel pixel, int sd){
-        double numerator = Math.pow((pixel.getRadius()-neighbourPixel.getRadius()), 2) + Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngle(), neighbourPixel.getAngle()), 2);
+//        double numerator = Math.pow((pixel.getRadius()-neighbourPixel.getRadius()), 2) + Math.pow(pixel.getRadius() * (pixel.getAngle() - neighbourPixel.getAngle()), 2);
+        double numerator = Math.pow((pixel.getRadius()-neighbourPixel.getRadius()), 2) + Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngleCooefficient(), neighbourPixel.getAngleCooefficient()), 2);
         double exp = numerator / 2 * Math.pow(sd, 2);
 
         return Math.exp( (-1) * exp);
-    }
+//        return Math.exp( (-1) * exp); ORIGINAL
+     }
 
     public static List<List<Integer>> normalize(List<List<Integer>> filteredPixelValues) {
 

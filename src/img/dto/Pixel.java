@@ -11,7 +11,15 @@ public class Pixel {
     private int quadrant;
     private double roundedRadius;
     private double roundedAngle;
+    private double angleCooefficient;
 
+    public double getAngleCooefficient() {
+        return angleCooefficient;
+    }
+
+    public void setAngleCooefficient(double angleCooefficient) {
+        this.angleCooefficient = angleCooefficient;
+    }
 
     public double getRoundedRadius() {
         return roundedRadius;

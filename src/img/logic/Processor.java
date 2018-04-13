@@ -72,9 +72,10 @@ public class Processor {
 
         List<List<Integer>> filteredPixelValues = this.imgInfo.stream().map(colPixels -> {
              return colPixels.stream().map(pixel -> {
-                 System.out.println("Working on ("+pixel.getX()+", "+pixel.getY()+")");
+//                 System.out.println("Working on ("+pixel.getX()+", "+pixel.getY()+")");
                 int filteredValue = findNeighbouringPixels(pixel, radAnglePixelMap);
-                return filteredValue < 0 ? 0 : filteredValue;
+//                return filteredValue < 0 ? 0 : filteredValue;
+                return filteredValue;
             }).collect(Collectors.toList());
         }).collect(Collectors.toList());
 
@@ -84,6 +85,7 @@ public class Processor {
 //        pixelValues.add(filteredValue);
 
         int[][] normalizedIntArray = CoordinateUtil.convertBackToIntArray(FilterUtil.normalize(filteredPixelValues));
+//        printAllValues(normalizedIntArray);
         imageHelper.writeToTiff(normalizedIntArray, image.getWidth(), image.getHeight());
     }
 
@@ -138,6 +140,17 @@ public class Processor {
         return filteredPixelValue;
     }
 
+    private void printAllValues(int[][] values){
+        for(int i = 0; i < values.length; i++)
+        {
+            for(int j = 0; j < values[i].length; j++)
+            {
+                System.out.printf("%5d ", values[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
     private int findNeighbouringPixelsAndApplyFilter(Pixel currentPixel){
         this.standardDeviation = 1;
         CoordinateUtil.updatePolarCoordinates(currentPixel);
@@ -165,7 +178,7 @@ public class Processor {
                 }
             }
         }
-//        System.out.println("Found "+ totalNeighbouringPixels +" neighbouring pixels");
+        System.out.println("Found "+ totalNeighbouringPixels +" neighbouring pixels");
         int filteredPixelValue = sumB == 0 ? 0 : Long.valueOf(currentPixel.getPixelValue() - Math.round(sumA / sumB)).intValue();
 
         return filteredPixelValue;
@@ -173,7 +186,7 @@ public class Processor {
 
 
     private int findNeighbouringPixels(Pixel currentPixel, TreeMap<Double, TreeMap<Double, Pixel>> radAnglePixelMap){
-        this.standardDeviation = 1;
+//        this.standardDeviation = 1;
 //        CoordinateUtil.updatePolarCoordinates(currentPixel);
 
         double radiusRangeLower = (currentPixel.getRoundedRadius() - 2) * this.standardDeviation;
@@ -213,8 +226,11 @@ public class Processor {
                 }
             }
         }*/
-//        System.out.println("Found "+ totalNeighbouringPixels +" neighbouring pixels");
-        int filteredPixelValue = sumB == 0 ? 0 : Long.valueOf(currentPixel.getPixelValue() - Math.round(sumA / sumB)).intValue();
+        System.out.println(totalNeighbouringPixels);
+
+        int subtract = sumB == 0 ? 0 : Long.valueOf(Math.round(sumA / sumB)).intValue();
+
+        int filteredPixelValue = currentPixel.getPixelValue() - subtract;
 
         return filteredPixelValue;
     }
