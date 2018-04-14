@@ -142,12 +142,17 @@ public class CoordinateUtil {
         pixel.setRoundedAngle(round(pixel.getAngle(), 2));
     }
 
-    private double angleAddition(float a, float b){
+    public static double angleAddition(double a, double b){
+        if (a*b == 1) {
+            return 0;
+        }
         return Math.atan((a + b) / (1 - (a * b)));
     }
 
     public static double angleDifference(double a, double b){
-        if (a*b == 1) {
+//        a = Math.abs(a); b = Math.abs(b);
+        if (a*b == -1) {
+            System.out.println("Returns zero");
             return 0;
         }
         return Math.atan((a - b) / (1 + (a * b)));

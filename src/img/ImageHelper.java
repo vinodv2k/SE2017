@@ -51,13 +51,12 @@ public class ImageHelper {
         return pixelsArray;
     }
 
-    public void writeToTiff(int[][] pixels, int width, int height) {
+    public void writeToTiff(int[][] pixels, int width, int height, int standardDeviation) {
         BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_USHORT_GRAY);
         WritableRaster wr = bi.getRaster();
 
-        for (int h = 0; h < width; h++){
-
-                wr.setPixels(0, h, width, 1, pixels[h]); // writing one row at a time. Hence h is 1
+        for (int row = 0; row < height; row++){
+                wr.setPixels(0, row, width, 1, pixels[row]); // writing one row at a time. Hence h is 1
         }
 
         SampleModel sampleModel =
@@ -70,7 +69,7 @@ public class ImageHelper {
         // Set the data of the tiled image to be the raster.
         tiledImage.setData(wr);
         // Save the image on a file.
-        JAI.create("filestore",tiledImage,"floatpattern.tif","TIFF");
+        JAI.create("filestore",tiledImage,"tse2017_output_"+standardDeviation+".tif","TIFF");
 
         System.out.println(wr);
     }

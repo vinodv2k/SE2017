@@ -12,6 +12,15 @@ public class Pixel {
     private double roundedRadius;
     private double roundedAngle;
     private double angleCooefficient;
+    private double degrees;
+
+    public double getDegrees() {
+        return degrees;
+    }
+
+    public void setDegrees(double degrees) {
+        this.degrees = degrees;
+    }
 
     public double getAngleCooefficient() {
         return angleCooefficient;
