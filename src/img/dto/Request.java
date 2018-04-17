@@ -1,14 +1,14 @@
 package img.dto;
 
 public class Request {
-    private int standardDeviation;
+    private double standardDeviation;
     private String filePath;
 
-    public int getStandardDeviation() {
+    public double getStandardDeviation() {
         return standardDeviation;
     }
 
-    public void setStandardDeviation(int standardDeviation) {
+    public void setStandardDeviation(double standardDeviation) {
         this.standardDeviation = standardDeviation;
     }
 

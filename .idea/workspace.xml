@@ -2,20 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63fe6aa1-7265-4691-b23c-745b9b7fe488" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/util/CoordinateUtilTest.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/floatpattern.tif" afterPath="$PROJECT_DIR$/floatpattern.tif" />
-      <change beforePath="$PROJECT_DIR$/img/sample.tif" afterPath="$PROJECT_DIR$/img/sample.tif" />
-      <change beforePath="$PROJECT_DIR$/out/production/ImgProcessing/img/ImageHelper.class" afterPath="$PROJECT_DIR$/out/production/ImgProcessing/img/ImageHelper.class" />
+      <change beforePath="$PROJECT_DIR$/floatpattern.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/floatpattern_SD1.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/floatpattern_SD2.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/fullsize.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/img/1.tiff" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/normalized-dark-output.zip" afterPath="" />
       <change beforePath="$PROJECT_DIR$/out/production/ImgProcessing/img/ImgApplication.class" afterPath="$PROJECT_DIR$/out/production/ImgProcessing/img/ImgApplication.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/ImgProcessing/img/logic/Processor.class" afterPath="$PROJECT_DIR$/out/production/ImgProcessing/img/logic/Processor.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/ImgProcessing/img/utils/CoordinateUtil.class" afterPath="$PROJECT_DIR$/out/production/ImgProcessing/img/utils/CoordinateUtil.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImgProcessing/img/logic/Processor.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImgProcessing/img/utils/FilterUtil.class" afterPath="$PROJECT_DIR$/out/production/ImgProcessing/img/utils/FilterUtil.class" />
       <change beforePath="$PROJECT_DIR$/src/img/ImageHelper.java" afterPath="$PROJECT_DIR$/src/img/ImageHelper.java" />
       <change beforePath="$PROJECT_DIR$/src/img/ImgApplication.java" afterPath="$PROJECT_DIR$/src/img/ImgApplication.java" />
-      <change beforePath="$PROJECT_DIR$/src/img/dto/Pixel.java" afterPath="$PROJECT_DIR$/src/img/dto/Pixel.java" />
+      <change beforePath="$PROJECT_DIR$/src/img/dto/Request.java" afterPath="$PROJECT_DIR$/src/img/dto/Request.java" />
       <change beforePath="$PROJECT_DIR$/src/img/logic/Processor.java" afterPath="$PROJECT_DIR$/src/img/logic/Processor.java" />
-      <change beforePath="$PROJECT_DIR$/src/img/utils/CoordinateUtil.java" afterPath="$PROJECT_DIR$/src/img/utils/CoordinateUtil.java" />
       <change beforePath="$PROJECT_DIR$/src/img/utils/FilterUtil.java" afterPath="$PROJECT_DIR$/src/img/utils/FilterUtil.java" />
+      <change beforePath="$PROJECT_DIR$/tse2017_output_1.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tse2017_output_2.tif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tse2017_output_3.tif" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,11 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FilterUtil.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FilterUtil.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/img/utils/FilterUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="26" column="44" lean-forward="true" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+            <state relative-caret-position="163">
+              <caret line="36" column="32" lean-forward="false" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -39,14 +43,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Processor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ImageHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/img/ImageHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="54" column="16" lean-forward="false" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Processor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/img/logic/Processor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="75" column="18" lean-forward="false" selection-start-line="75" selection-start-column="10" selection-end-line="75" selection-end-column="18" />
-              <folding>
-                <element signature="method#findNeighbouringPixelsAndApplyFilter#0;class#Processor#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="322">
+              <caret line="75" column="24" lean-forward="true" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -98,22 +110,22 @@
         <option value="$PROJECT_DIR$/src/img/utils/SolarCenter.java" />
         <option value="$PROJECT_DIR$/src/img/common/SolarCenter.java" />
         <option value="$PROJECT_DIR$/src/img/common/DegreeConstants.java" />
-        <option value="$PROJECT_DIR$/src/img/dto/Request.java" />
         <option value="$PROJECT_DIR$/src/img/dto/NeighbourPixel.java" />
         <option value="$PROJECT_DIR$/src/img/utils/KernelUtil.java" />
         <option value="$PROJECT_DIR$/src/img/dto/Image.java" />
-        <option value="$PROJECT_DIR$/src/img/ImgApplication.java" />
         <option value="$PROJECT_DIR$/src/test/util/CoordinateUtilTest.java" />
         <option value="$PROJECT_DIR$/src/img/dto/Pixel.java" />
         <option value="$PROJECT_DIR$/src/img/utils/CoordinateUtil.java" />
-        <option value="$PROJECT_DIR$/src/img/utils/FilterUtil.java" />
-        <option value="$PROJECT_DIR$/src/img/ImageHelper.java" />
+        <option value="$PROJECT_DIR$/src/img/dto/Request.java" />
+        <option value="$PROJECT_DIR$/src/img/ImgApplication.java" />
         <option value="$PROJECT_DIR$/src/img/logic/Processor.java" />
+        <option value="$PROJECT_DIR$/src/img/ImageHelper.java" />
+        <option value="$PROJECT_DIR$/src/img/utils/FilterUtil.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-6" />
+    <option name="x" value="-7" />
     <option name="width" value="1932" />
     <option name="height" value="1047" />
   </component>
@@ -213,7 +225,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/jaimbot-1.3.jar!/" />
-    <property name="SearchEverywhereHistoryKey" value="printallvalues&#9;PSI&#9;JAVA://img.logic.Processor#printAllValues&#10;coordinate&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/utils/CoordinateUtil.java&#10;applica&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/ImgApplication.java&#10;solar&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/common/SolarCenter.java&#10;coordin&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/utils/CoordinateUtil.java&#10;pr&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/logic/Processor.java&#10;imagehel&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/ImageHelper.java&#10;coordina&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/utils/CoordinateUtil.java&#10;coordinateutil&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/utils/CoordinateUtil.java" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/ImgApplication.java&#10;printallvalues&#9;PSI&#9;JAVA://img.logic.Processor#printAllValues&#10;coordinate&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/utils/CoordinateUtil.java&#10;applica&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/ImgApplication.java&#10;solar&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/common/SolarCenter.java&#10;coordin&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/utils/CoordinateUtil.java&#10;pr&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/logic/Processor.java&#10;imagehel&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/ImageHelper.java&#10;coordina&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/utils/CoordinateUtil.java&#10;coordinateutil&#9;FILE&#9;file://C:/Users/vxv8930/Downloads/ImgProcessing/src/img/utils/CoordinateUtil.java" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -368,7 +380,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="0" width="1932" height="1047" extended-state="0" />
+    <frame x="-7" y="0" width="1932" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -379,9 +391,9 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.76065576" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30163935" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.096174866" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45027322" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12446581" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -454,61 +466,72 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <condition expression="pixel.getX() == 20 &amp;&amp; pixel.getY() == 20" language="JAVA" />
-          <url>file://$PROJECT_DIR$/src/img/logic/Processor.java</url>
-          <line>104</line>
+          <url>file://$PROJECT_DIR$/src/img/ImageHelper.java</url>
+          <line>30</line>
           <properties />
-          <option name="timeStamp" value="89" />
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/img/ImageHelper.java</url>
+          <line>19</line>
+          <properties />
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/img/ImgApplication.java</url>
+          <line>17</line>
+          <properties />
+          <option name="timeStamp" value="99" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="95" />
+      <option name="time" value="100" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
-        <expression-string>pixels[row]</expression-string>
+        <expression-string>request.getFilePath().substring(request.getFilePath().lastIndexOf('/')+1, request.getFilePath().length())</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>radAnglePixelMap.subMap(59.05, 71.05)</expression-string>
+        <expression-string>request.getFilePath().substring(request.getFilePath().lastIndexOf('/'), request.getFilePath().length())</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>currentPixel.getRadius()</expression-string>
+        <expression-string>request.getFilePath().substring(request.getFilePath().lastIndexOf('/'), request.getFilePath().length()-1)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>currentPixel.getAngle()</expression-string>
+        <expression-string>request.getFilePath().lastIndexOf('/')</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>angleMap.getValue()</expression-string>
+        <expression-string>request.getFilePath()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>angleMap.getValue().subMap(2.0, 2.45)</expression-string>
+        <expression-string>op.getData().getDataBuffer().getOffsets()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>angleMap.getValue().subMap(2.26, 2.45)</expression-string>
+        <expression-string>op.getData().getDataBuffer().offsets</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>angleMap.getValue().subMap(0.0, 2.65)</expression-string>
+        <expression-string>op.getData().getDataBuffer().dataType</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>angleMap.getValue().subMap(lowerAngleRange, upperAngleRange)</expression-string>
+        <expression-string>op.getData().getDataBuffer()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
@@ -787,8 +810,8 @@
         <state relative-caret-position="136">
           <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
           <folding>
-            <element signature="e#247#248#0" expanded="true" />
-            <element signature="e#305#306#0" expanded="true" />
+            <element signature="e#256#257#0" expanded="false" />
+            <element signature="e#314#315#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -797,9 +820,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="52" column="59" lean-forward="false" selection-start-line="52" selection-start-column="59" selection-end-line="52" selection-end-column="59" />
-          <folding>
-            <element signature="method#findNeighbouringPixelsAndApplyFilter#0;class#Processor#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -807,9 +828,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1938">
           <caret line="114" column="46" lean-forward="true" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
-          <folding>
-            <element signature="method#findNeighbouringPixelsAndApplyFilter#0;class#Processor#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -833,9 +852,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding>
-            <element signature="method#findNeighbouringPixelsAndApplyFilter#0;class#Processor#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -947,36 +964,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/ImgApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/util/CoordinateUtilTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/dto/Pixel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding>
-            <element signature="e#399#400#0" expanded="true" />
-            <element signature="e#429#430#0" expanded="true" />
-            <element signature="e#475#476#0" expanded="true" />
-            <element signature="e#513#514#0" expanded="true" />
-            <element signature="e#1306#1307#0" expanded="true" />
-            <element signature="e#1920#1921#0" expanded="true" />
-            <element signature="e#1949#1950#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -989,14 +982,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/ImageHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/img/utils/CoordinateUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2601">
@@ -1005,33 +990,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/dto/Request.java">
+    <entry file="file://$PROJECT_DIR$/src/img/dto/Pixel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+        <state relative-caret-position="195">
+          <caret line="48" column="15" lean-forward="false" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="15" />
           <folding>
-            <element signature="e#247#248#0" expanded="true" />
-            <element signature="e#305#306#0" expanded="true" />
+            <element signature="e#399#400#0" expanded="false" />
+            <element signature="e#429#430#0" expanded="false" />
+            <element signature="e#475#476#0" expanded="false" />
+            <element signature="e#513#514#0" expanded="false" />
+            <element signature="e#1117#1118#0" expanded="false" />
+            <element signature="e#1150#1151#0" expanded="false" />
+            <element signature="e#1275#1276#0" expanded="false" />
+            <element signature="e#1306#1307#0" expanded="false" />
+            <element signature="e#1920#1921#0" expanded="false" />
+            <element signature="e#1949#1950#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/utils/FilterUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/img/dto/Request.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="26" column="44" lean-forward="true" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+        <state relative-caret-position="102">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#256#257#0" expanded="false" />
+            <element signature="e#314#315#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/img/ImgApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="20" column="46" lean-forward="true" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/img/ImageHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="54" column="16" lean-forward="false" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/img/logic/Processor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="75" column="18" lean-forward="false" selection-start-line="75" selection-start-column="10" selection-end-line="75" selection-end-column="18" />
+        <state relative-caret-position="322">
+          <caret line="75" column="24" lean-forward="true" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/img/utils/FilterUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="36" column="32" lean-forward="false" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
           <folding>
-            <element signature="method#findNeighbouringPixelsAndApplyFilter#0;class#Processor#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

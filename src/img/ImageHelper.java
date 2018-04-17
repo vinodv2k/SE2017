@@ -28,10 +28,11 @@ public class ImageHelper {
         int row = 0;
         int blockSize = op.getWidth();
         Pixel pixel = null;
+        int stepper = op.getColorModel().getColorSpace().isCS_sRGB() ? 3 : 1;
 
-        for (int i = 0; i < pixels.length; i=i+1) {
+        for (int i = 0; i < pixels.length; i=i+stepper) {
             pixel = new Pixel();
-            pixel.setPixelValue(pixels[i] < 0 ? 65336 + pixels[i] : pixels[i]);
+            pixel.setPixelValue(pixels[i] < 0 ? 65335 + pixels[i] : pixels[i]);
             pixel.setX(row);
             pixel.setY(col);
             data[row][col] = pixels[i];
@@ -51,7 +52,7 @@ public class ImageHelper {
         return pixelsArray;
     }
 
-    public void writeToTiff(int[][] pixels, int width, int height, int standardDeviation) {
+    public void writeToTiff(int[][] pixels, int width, int height, double standardDeviation, String filename) {
         BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_USHORT_GRAY);
         WritableRaster wr = bi.getRaster();
 
@@ -69,7 +70,9 @@ public class ImageHelper {
         // Set the data of the tiled image to be the raster.
         tiledImage.setData(wr);
         // Save the image on a file.
-        JAI.create("filestore",tiledImage,"tse2017_output_"+standardDeviation+".tif","TIFF");
+        String fileName = filename+"_"+standardDeviation+".tiff";
+        System.out.println(filename);
+        JAI.create("filestore",tiledImage,fileName,"TIFF");
 
         System.out.println(wr);
     }

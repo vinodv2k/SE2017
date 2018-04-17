@@ -12,8 +12,8 @@ import java.util.List;
 public class ImgApplication {
     public static void main(String[] args) throws Exception {
         Request request = new Request();
-        request.setStandardDeviation(3);
-        request.setFilePath("./img/sample.tif");
+        request.setStandardDeviation(8);
+        request.setFilePath("./img/1_250_PC.tif");
 
         SolarCenter.solarCenterX = 66;
         SolarCenter.solarCenterY = 66;
@@ -30,25 +30,5 @@ public class ImgApplication {
         CoordinateUtil.updateDegrees(pixel);
         System.out.println(pixel.getRadius());
         System.out.println(pixel.getAngle());
-    }
-
-    public static void testOnlyOnePixel() {
-        SolarCenter.solarCenterX = 66;
-        SolarCenter.solarCenterY = 66;
-
-        Request request = new Request();
-        request.setStandardDeviation(1);
-        request.setFilePath("./img/sample.tif");
-
-        List<List<Pixel>> pixels = new ArrayList<>();
-        List<Pixel> innerPixels = new ArrayList<>();
-        Pixel pixel = new Pixel();
-        pixel.setX(20);
-        pixel.setY(20);
-        innerPixels.add(pixel);
-        pixels.add(innerPixels);
-
-        Processor processor = new Processor();
-        processor.achf(pixels);
     }
 }

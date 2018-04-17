@@ -17,9 +17,8 @@ import java.util.stream.Collectors;
 
 public class Processor {
 
-    private int standardDeviation;
+    private double standardDeviation;
     private List<List<Pixel>> imgInfo;
-
     public void processCorona(Request request){
         ImageHelper imageHelper = new ImageHelper();
         Image image = new Image();
@@ -67,65 +66,14 @@ public class Processor {
             }).collect(Collectors.toList());
         }).collect(Collectors.toList());
 
-
 //        filteredValue = findNeighbouringPixelsAndApplyFilter(this.imgInfo.get(20).get(20));
 //        pixelValues.add(filteredValue < 0 ? 0 : filteredValue);
 //        pixelValues.add(filteredValue);
 
         int[][] normalizedIntArray = CoordinateUtil.convertBackToIntArray(FilterUtil.normalize(filteredPixelValues));
 //        printAllValues(normalizedIntArray);
-        imageHelper.writeToTiff(normalizedIntArray, image.getWidth(), image.getHeight(), this.standardDeviation);
-    }
-
-    public void achf(List<List<Pixel>> filteredPixelValues){
-        filteredPixelValues.stream().forEach(pixelColumn -> {
-            pixelColumn.stream().forEach(rowPixel -> {
-                CoordinateUtil.updatePolarCoordinates(rowPixel);
-                int filteredValue = findNeighbouringPixelsAndApplyFilter(rowPixel);
-                System.out.println(filteredValue);
-            });
-        });
-    }
-
-    private int filterPixel(Pixel pixel){
-        this.standardDeviation = 1;
-        CoordinateUtil.updatePolarCoordinates(pixel);
-
-        if(pixel.getQuadrant() == -1)
-            return 0;
-
-
-
-        double radiusRangeLower = (pixel.getRadius() - 2) * this.standardDeviation;
-        double radiusRangeUpper = (pixel.getRadius() + 2) * this.standardDeviation;
-
-        double degreeRangeLower = (pixel.getAngle() - ((2 * this.standardDeviation) / pixel.getRadius()));
-        double degreeRangeUpper = (pixel.getAngle() + ((2 * this.standardDeviation) / pixel.getRadius()));
-
-        double pRadius = radiusRangeLower;
-        double pAngle = degreeRangeLower;
-
-        double sumA = 0, sumB = 0;
-        NeighbourPixel neighbourPixel= null;
-        while(pRadius < radiusRangeUpper){
-            while(pAngle < degreeRangeUpper){
-                neighbourPixel = new NeighbourPixel();
-                neighbourPixel.setRadius(pRadius);
-                neighbourPixel.setAngle(pAngle);
-                CoordinateUtil.updateCartessianCoordinates(neighbourPixel);
-                CoordinateUtil.adjustOffset(neighbourPixel);
-                neighbourPixel.setPixelValue(getPixelValueOf(neighbourPixel.getX(), neighbourPixel.getY()));
-
-               double kernelValue = FilterUtil.calculateKernel(neighbourPixel, pixel, this.standardDeviation);
-                sumA += (neighbourPixel.getPixelValue() * kernelValue);
-                sumB += kernelValue;
-                pAngle++;
-            }
-            pRadius++;
-        }
-
-        int filteredPixelValue = sumB == 0 ? 0 : Long.valueOf(pixel.getPixelValue() - Math.round(sumA / sumB)).intValue();
-        return filteredPixelValue;
+        String fileName = request.getFilePath().substring(request.getFilePath().lastIndexOf('/')+1, request.getFilePath().length());
+        imageHelper.writeToTiff(normalizedIntArray, image.getWidth(), image.getHeight(), this.standardDeviation, fileName);
     }
 
     private void printAllValues(int[][] values){
@@ -139,48 +87,10 @@ public class Processor {
         }
     }
 
-    @Deprecated
-    private int findNeighbouringPixelsAndApplyFilter(Pixel currentPixel){
-        this.standardDeviation = 1;
-        CoordinateUtil.updatePolarCoordinates(currentPixel);
-
-        double radiusRangeLower = (currentPixel.getRadius() - 2) * this.standardDeviation;
-        double radiusRangeUpper = (currentPixel.getRadius() + 2) * this.standardDeviation;
-
-        double lowerAngleRange = (currentPixel.getAngle() - ((2 * this.standardDeviation) / currentPixel.getRadius()));
-        double upperAngleRange = (currentPixel.getAngle() + ((2 * this.standardDeviation) / currentPixel.getRadius()));
-
-        Pixel neighbourPixel = null;
-        double sumA = 0; double sumB = 0;
-
-        int totalNeighbouringPixels = 0;
-        for(int i = 0; i < this.imgInfo.size(); i++){
-            for(int j = 0; j < this.imgInfo.get(i).size(); j++){
-                neighbourPixel = this.imgInfo.get(i).get(j);
-                CoordinateUtil.updatePolarCoordinates(neighbourPixel);
-                if(neighbourPixel.getRadius() > radiusRangeLower && neighbourPixel.getRadius() < radiusRangeUpper
-                        && (neighbourPixel.getAngle() > lowerAngleRange && neighbourPixel.getAngle() < upperAngleRange)){
-                    System.out.println(currentPixel.getxOffset()+"\t"+currentPixel.getyOffset()+"\t"+neighbourPixel.getxOffset()+"\t"+neighbourPixel.getyOffset()+"\t");
-                    double kernelValue = FilterUtil.calculateKernel(neighbourPixel, currentPixel, this.standardDeviation);
-                    sumA += (neighbourPixel.getPixelValue() * kernelValue);
-                    sumB += kernelValue;
-                    totalNeighbouringPixels++;
-                }
-            }
-        }
-        if(currentPixel.getQuadrant() == 4){
-            System.out.println("Found "+ totalNeighbouringPixels +" neighbouring pixels");
-        }
-        int filteredPixelValue = sumB == 0 ? 0 : Long.valueOf(currentPixel.getPixelValue() - Math.round(sumA / sumB)).intValue();
-
-        return filteredPixelValue;
-    }
-
-
     private int findNeighbouringPixels(Pixel currentPixel, TreeMap<Double, TreeMap<Double, Pixel>> radAnglePixelMap){
 //        this.standardDeviation = 1;
 //        CoordinateUtil.updatePolarCoordinates(currentPixel);
-        if (currentPixel.getRoundedAngle() == 22.62){
+        if (currentPixel.getRoundedRadius() == 22.62){
             return 0;
         }
 
@@ -190,13 +100,8 @@ public class Processor {
         double lowerAngleRange = (currentPixel.getRoundedAngle() - ((2 * this.standardDeviation) / currentPixel.getRoundedRadius()));
         double upperAngleRange = (currentPixel.getRoundedAngle() + ((2 * this.standardDeviation) / currentPixel.getRoundedRadius()));
 
-        if (currentPixel.getQuadrant() == 2){
-            System.out.println(lowerAngleRange + "\t" + upperAngleRange);
-        }
-
         Pixel neighbourPixel = null;
         double sumA = 0; double sumB = 0;
-
         int totalNeighbouringPixels = 0;
         SortedMap<Double,TreeMap<Double, Pixel>> subMapEntry = radAnglePixelMap.subMap(radiusRangeLower, radiusRangeUpper);
         for (Map.Entry<Double, TreeMap<Double, Pixel>> angleMap : subMapEntry.entrySet()) {
@@ -212,15 +117,7 @@ public class Processor {
         }
 
         int subtract = sumB == 0 ? 0 : Long.valueOf(Math.round(sumA / sumB)).intValue();
-
         int filteredPixelValue = currentPixel.getPixelValue() - subtract;
-        /*if(currentPixel.getQuadrant() == -1){
-            System.out.println(totalNeighbouringPixels+"\t"+currentPixel.getxOffset()+"\t"+currentPixel.getyOffset());
-//            System.out.println(totalNeighbouringPixels+"\t"+currentPixel.getX()+"\t"+currentPixel.getY());
-//            System.out.println(totalNeighbouringPixels);
-//            System.out.println(currentPixel.getPixelValue()+"\t"+subtract);
-        }*/
-
         return filteredPixelValue;
     }
 
