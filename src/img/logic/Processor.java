@@ -90,15 +90,15 @@ public class Processor {
     private int findNeighbouringPixels(Pixel currentPixel, TreeMap<Double, TreeMap<Double, Pixel>> radAnglePixelMap){
 //        this.standardDeviation = 1;
 //        CoordinateUtil.updatePolarCoordinates(currentPixel);
-        if (currentPixel.getRoundedRadius() == 22.62){
+/*        if (currentPixel.getRoundedRadius() == 22.62){
             return 0;
-        }
+        }*/
 
-        double radiusRangeLower = (currentPixel.getRoundedRadius()) - (2 * this.standardDeviation);
-        double radiusRangeUpper = (currentPixel.getRoundedRadius()) + (2 * this.standardDeviation);
+        double radiusRangeLower = (currentPixel.getRadius()) - (2 * this.standardDeviation);
+        double radiusRangeUpper = (currentPixel.getRadius()) + (2 * this.standardDeviation);
 
-        double lowerAngleRange = (currentPixel.getRoundedAngle() - ((2 * this.standardDeviation) / currentPixel.getRoundedRadius()));
-        double upperAngleRange = (currentPixel.getRoundedAngle() + ((2 * this.standardDeviation) / currentPixel.getRoundedRadius()));
+        double lowerAngleRange = (currentPixel.getAngle() - ((2 * this.standardDeviation) / currentPixel.getRadius()));
+        double upperAngleRange = (currentPixel.getAngle() + ((2 * this.standardDeviation) / currentPixel.getRadius()));
 
         Pixel neighbourPixel = null;
         double sumA = 0; double sumB = 0;

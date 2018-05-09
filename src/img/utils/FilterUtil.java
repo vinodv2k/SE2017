@@ -10,7 +10,7 @@ import java.util.List;
 public class FilterUtil {
     public static double calculateKernel(Pixel neighbourPixel, Pixel pixel, double sd){
 //        double numerator = Math.pow((pixel.getRadius()-neighbourPixel.getRadius()), 2) + Math.pow(pixel.getRadius() * (Math.abs(pixel.getAngleCooefficient()) - Math.abs(neighbourPixel.getAngleCooefficient())), 2);
-        double a = Math.pow((neighbourPixel.getRadius()-pixel.getRadius()), 2);
+        double a = Math.pow((pixel.getRadius() - neighbourPixel.getRadius()), 2);
         double b = 0;
         if (pixel.getQuadrant() == 2 || pixel.getQuadrant() == 4){
 //            b = Math.pow(pixel.getRadius() * (neighbourPixel.getAngleCooefficient()-pixel.getAngleCooefficient()),2);
@@ -18,6 +18,7 @@ public class FilterUtil {
         } else {
             b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngleCooefficient(), neighbourPixel.getAngleCooefficient()), 2);
         }
+//        b = 0;
 //        b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngleCooefficient(), neighbourPixel.getAngleCooefficient()), 2);
         double numerator =  a + b;
         double exp = numerator / 2 * Math.pow(sd, 2);

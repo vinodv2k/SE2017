@@ -139,7 +139,7 @@ public class CoordinateUtil {
             }*/
 
         pixel.setAngle(degrees);
-        pixel.setRoundedAngle(round(pixel.getAngle(), 2));
+        pixel.setRoundedAngle(round(pixel.getAngle(), 5));
     }
 
     public static double angleAddition(double a, double b){
