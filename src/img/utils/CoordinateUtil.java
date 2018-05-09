@@ -97,28 +97,36 @@ public class CoordinateUtil {
 
         if (x == 0){
             if (y < 0){
-                degrees = DegreeConstants.RADIANS_270;
+                setAngleAndRoundedAngle(pixel, DegreeConstants.RADIANS_270);
+                System.out.println(x + "," + y);
+                return;
             } else {
-                degrees =  DegreeConstants.RADIANS_90;
+                setAngleAndRoundedAngle(pixel, DegreeConstants.RADIANS_90);
+                System.out.println(x + "," + y);
+                return;
             }
         }
 
         if (y == 0){
             if (x > 0) {
-                degrees =  0;
+                setAngleAndRoundedAngle(pixel, 0);
+                System.out.println(x + "," + y);
+                return;
             } else {
-                degrees =  DegreeConstants.RADIANS_180;
+                setAngleAndRoundedAngle(pixel, DegreeConstants.RADIANS_180);
+                System.out.println(x + "," + y);
+                return;
             }
         }
 
-        int signFactor = 1;
+        /*int signFactor = 1;
         if (x == 0 || y == 0){
             pixel.setAngleCooefficient(0);
             degrees =  Math.atan(0);
         } else if((y / x) < 0) {
             pixel.setAngleCooefficient(y/x);
             signFactor = -1;
-        }
+        }*/
 
         switch (q){
                 case 1: degrees =  Math.atan(Math.abs(y) / Math.abs(x));
@@ -128,16 +136,14 @@ public class CoordinateUtil {
                 case 3: degrees =  ((q-1) * DegreeConstants.RADIANS_90) + ((-1) * Math.atan(y/x));
                         degrees = (-1) * degrees;
                         break;
-                default:degrees =  Math.atan(y/x);
+                case 4: degrees =  Math.atan(y/x);
                         break;
             }
-            /*switch (q){
-                case 1: degrees =  Math.atan(y / x);
-                case 2: degrees =  signFactor * (Math.atan(x/y) + DegreeConstants.RADIANS_90);
-                case 3: degrees =  Math.atan(x/y) + ((q-1) * DegreeConstants.RADIANS_90);
-                default:degrees =  Math.atan(y/x) + ((q-1) * DegreeConstants.RADIANS_90);
-            }*/
 
+        setAngleAndRoundedAngle(pixel, degrees);
+    }
+
+    private static void setAngleAndRoundedAngle(Pixel pixel, double degrees){
         pixel.setAngle(degrees);
         pixel.setRoundedAngle(round(pixel.getAngle(), 5));
     }
