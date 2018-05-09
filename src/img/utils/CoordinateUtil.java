@@ -98,11 +98,11 @@ public class CoordinateUtil {
         if (x == 0){
             if (y < 0){
                 setAngleAndRoundedAngle(pixel, DegreeConstants.RADIANS_270);
-                System.out.println(x + "," + y);
+//                System.out.println(x + "," + y);
                 return;
             } else {
                 setAngleAndRoundedAngle(pixel, DegreeConstants.RADIANS_90);
-                System.out.println(x + "," + y);
+//                System.out.println(x + "," + y);
                 return;
             }
         }
@@ -110,11 +110,11 @@ public class CoordinateUtil {
         if (y == 0){
             if (x > 0) {
                 setAngleAndRoundedAngle(pixel, 0);
-                System.out.println(x + "," + y);
+//                System.out.println(x + "," + y);
                 return;
             } else {
                 setAngleAndRoundedAngle(pixel, DegreeConstants.RADIANS_180);
-                System.out.println(x + "," + y);
+//                System.out.println(x + "," + y);
                 return;
             }
         }
