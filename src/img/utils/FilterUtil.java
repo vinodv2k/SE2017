@@ -10,12 +10,12 @@ import java.util.List;
 public class FilterUtil {
     public static double calculateKernel(Pixel neighbourPixel, Pixel pixel, double sd){
         double a = Math.pow((pixel.getRadius() - neighbourPixel.getRadius()), 2);
-        double b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(neighbourPixel.getRoundedAngle(), pixel.getRoundedAngle()), 2);
+        double b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngleCooefficient(), neighbourPixel.getAngleCooefficient()), 2);
 
         double numerator =  a + b;
-        double exp = numerator / (2 * Math.pow(sd, 2));
+        double powerFactor = numerator / (2 * Math.pow(sd, 2));
 
-        return Math.exp( (-1) * exp);
+        return Math.exp( (-1) * powerFactor);
      }
 
     public static List<List<Integer>> normalize(List<List<Integer>> filteredPixelValues) {
