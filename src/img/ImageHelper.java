@@ -32,9 +32,9 @@ public class ImageHelper {
 
         for (int i = 0; i < pixels.length; i=i+stepper) {
             pixel = new Pixel();
-            pixel.setPixelValue(pixels[i] < 0 ? 65335 + pixels[i] : pixels[i]);
-            pixel.setX(row);
-            pixel.setY(col);
+            pixel.setPixelValue(pixels[i] < 0 ? 65536 + pixels[i] : pixels[i]); //adding 65535 to avoid
+            pixel.setX(row+1); // Start the x from 1 than 0
+            pixel.setY(col+1); // Start the y from 1 than 0
             data[row][col] = pixels[i];
             columnPixels.add(pixel);
 
@@ -47,7 +47,7 @@ public class ImageHelper {
                 row = 0;
             }
         }
-        System.out.println(data);
+//        System.out.println(data);
 
         return pixelsArray;
     }

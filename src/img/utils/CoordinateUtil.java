@@ -22,6 +22,7 @@ public class CoordinateUtil {
     public static void updateSolarCenter(Image image){
         SolarCenter.setSolarCenterX(image.getWidth() / 2);
         SolarCenter.setSolarCenterY(image.getHeight() / 2);
+        System.out.println("Solar Center is "+ SolarCenter.getSolarCenterX() + "," + SolarCenter.getSolarCenterY());
     }
 
     public static void updateCartessianCoordinates(Pixel pixel) {
@@ -37,9 +38,9 @@ public class CoordinateUtil {
     private static int findQuadrant(int x, int y) {
         int x0 = SolarCenter.getSolarCenterX();
         int y0 = SolarCenter.getSolarCenterY();
-        if( x == x0 || y == y0 ){
+/*        if( x == x0 || y == y0 ){
             return -1;
-        }
+        }*/
 
         if(x > x0 && y > y0) {
 //            System.out.println("IV Quadrant");
@@ -60,9 +61,9 @@ public class CoordinateUtil {
     }
 
     private static Pixel updatePixelOffsetFromSolarCenter(Pixel pixel){
-        if (pixel.getQuadrant() == 0) {
+       /* if (pixel.getQuadrant() == 0) {
             return pixel;
-        }
+        }*/
         pixel.setxOffset(pixel.getX() - SolarCenter.getSolarCenterX());
         pixel.setyOffset(SolarCenter.getSolarCenterY() - pixel.getY());
         return pixel;
@@ -90,6 +91,19 @@ public class CoordinateUtil {
         float y = pixel.getyOffset();
         int q = pixel.getQuadrant();
         double degrees = 0;
+
+        switch (q){
+            case 1: degrees =  Math.atan(Math.abs(y) / Math.abs(x));
+                break;
+            case 2: degrees =  Math.atan(y/x) + (DegreeConstants.RADIANS_180);
+                break;
+            case 3: degrees =  ((q-1) * DegreeConstants.RADIANS_90) + ((-1) * Math.atan(y/x));
+                degrees = (-1) * degrees;
+                break;
+            case 4: degrees =  Math.atan(y/x);
+                break;
+        }
+
         if(x == 0 && y == 0){
             degrees = 0;
             pixel.setAngleCooefficient(0);
@@ -97,7 +111,7 @@ public class CoordinateUtil {
 
         if (x == 0){
             if (y < 0){
-                setAngleAndRoundedAngle(pixel, DegreeConstants.RADIANS_270);
+                setAngleAndRoundedAngle(pixel, (-1)*DegreeConstants.RADIANS_90);
 //                System.out.println(x + "," + y);
                 return;
             } else {
@@ -118,28 +132,6 @@ public class CoordinateUtil {
                 return;
             }
         }
-
-        /*int signFactor = 1;
-        if (x == 0 || y == 0){
-            pixel.setAngleCooefficient(0);
-            degrees =  Math.atan(0);
-        } else if((y / x) < 0) {
-            pixel.setAngleCooefficient(y/x);
-            signFactor = -1;
-        }*/
-
-        switch (q){
-                case 1: degrees =  Math.atan(Math.abs(y) / Math.abs(x));
-                        break;
-                case 2: degrees =  Math.atan(y/x) + (DegreeConstants.RADIANS_180);
-                        break;
-                case 3: degrees =  ((q-1) * DegreeConstants.RADIANS_90) + ((-1) * Math.atan(y/x));
-                        degrees = (-1) * degrees;
-                        break;
-                case 4: degrees =  Math.atan(y/x);
-                        break;
-            }
-
         setAngleAndRoundedAngle(pixel, degrees);
     }
 
@@ -170,6 +162,9 @@ public class CoordinateUtil {
         for (int i = 0; i < pixels.size(); i++){
             for (int j = 0; j < pixels.get(i).size(); j++){
                 pixelValues[i][j] = pixels.get(i).get(j).intValue();
+                if(i == 50 && j == 50){
+                    pixelValues[i][j] = 0;
+                }
             }
         }
 
