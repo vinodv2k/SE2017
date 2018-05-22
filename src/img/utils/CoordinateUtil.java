@@ -162,9 +162,6 @@ public class CoordinateUtil {
         for (int i = 0; i < pixels.size(); i++){
             for (int j = 0; j < pixels.get(i).size(); j++){
                 pixelValues[i][j] = pixels.get(i).get(j).intValue();
-                if(i == 50 && j == 50){
-                    pixelValues[i][j] = 0;
-                }
             }
         }
 

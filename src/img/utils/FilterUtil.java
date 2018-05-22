@@ -9,11 +9,19 @@ import java.util.List;
 
 public class FilterUtil {
     public static double calculateKernel(Pixel neighbourPixel, Pixel pixel, double sd){
-        double a = Math.pow((pixel.getRadius() - neighbourPixel.getRadius()), 2);
-        double b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngleCooefficient(), neighbourPixel.getAngleCooefficient()), 2);
+//        double a = Math.pow((pixel.getRadius() - neighbourPixel.getRadius()), 2);
+        double a = Math.pow(pixel.getRadius(), 2) + Math.pow(neighbourPixel.getRadius(), 2) - (2 * pixel.getRadius() * neighbourPixel.getRadius());
+//        double b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getRoundedAngle(), neighbourPixel.getRoundedAngle()), 2);
+
+        double x = pixel.getRadius() * pixel.getAngle();
+        double y = pixel.getRadius() * neighbourPixel.getAngle();
+
+//        double b = Math.pow(x, 2) + Math.pow(y, 2) - 2 * x * y;
+
+        double b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngle() , neighbourPixel.getAngle()), 2);
 
         double numerator =  a + b;
-        double powerFactor = numerator / (2 * Math.pow(sd, 2));
+        double powerFactor = numerator / Math.pow((sd * 2), 2);
 
         return Math.exp( (-1) * powerFactor);
      }
