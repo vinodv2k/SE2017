@@ -13,6 +13,24 @@ public class Pixel {
     private double roundedAngle;
     private double angleCooefficient;
     private double degrees;
+    private int filteredValue;
+    private int normalizedValue;
+
+    public int getNormalizedValue() {
+        return normalizedValue;
+    }
+
+    public void setNormalizedValue(int normalizedValue) {
+        this.normalizedValue = normalizedValue;
+    }
+
+    public int getFilteredValue() {
+        return filteredValue;
+    }
+
+    public void setFilteredValue(int filteredValue) {
+        this.filteredValue = filteredValue;
+    }
 
     public double getDegrees() {
         return degrees;

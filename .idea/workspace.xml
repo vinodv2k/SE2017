@@ -2,14 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b8813f5-07b3-46bc-be50-1892037c7f6d" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/img/common/Lunar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_250_PC.tif_1.0.tiff" beforeDir="false" afterPath="$PROJECT_DIR$/1_250_PC.tif_1.0.tiff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_250_PC.tif_2.0.tiff" beforeDir="false" afterPath="$PROJECT_DIR$/1_250_PC.tif_2.0.tiff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_250_PC.tif_4.0.tiff" beforeDir="false" afterPath="$PROJECT_DIR$/1_250_PC.tif_4.0.tiff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_250_PC.tif_8.0.tiff" beforeDir="false" afterPath="$PROJECT_DIR$/1_250_PC.tif_8.0.tiff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_250_PC.tif_1.0.tiff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_250_PC.tif_2.0.tiff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_250_PC.tif_3.0.tiff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_250_PC.tif_4.0.tiff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_250_PC.tif_8.0.tiff" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SE2017/img/ImgApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SE2017/img/ImgApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SE2017/img/dto/Pixel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SE2017/img/dto/Pixel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SE2017/img/logic/Processor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SE2017/img/logic/Processor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SE2017/img/utils/CoordinateUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SE2017/img/utils/CoordinateUtil.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SE2017/img/utils/FilterUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SE2017/img/utils/FilterUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/ImageHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/ImageHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/img/ImgApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/ImgApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/dto/Pixel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/dto/Pixel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/logic/Processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/logic/Processor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/img/utils/CoordinateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/utils/CoordinateUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/img/utils/FilterUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/utils/FilterUtil.java" afterDir="false" />
     </list>
@@ -27,7 +35,16 @@
         <entry file="file://$PROJECT_DIR$/src/img/ImgApplication.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+              <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Processor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/img/logic/Processor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="78" column="96" lean-forward="true" selection-start-line="78" selection-start-column="96" selection-end-line="78" selection-end-column="96" />
             </state>
           </provider>
         </entry>
@@ -35,22 +52,29 @@
       <file leaf-file-name="FilterUtil.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/img/utils/FilterUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="20" column="124" selection-start-line="20" selection-start-column="124" selection-end-line="20" selection-end-column="124" />
+            <state relative-caret-position="269">
+              <caret line="75" column="54" lean-forward="true" selection-start-line="75" selection-start-column="54" selection-end-line="75" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoordinateUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/img/utils/CoordinateUtil.java">
+      <file leaf-file-name="ImageHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/img/ImageHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="155" column="48" selection-start-line="155" selection-start-column="48" selection-end-line="155" selection-end-column="48" />
+            <state relative-caret-position="-466">
+              <caret line="22" column="62" lean-forward="true" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -58,10 +82,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/img/logic/Processor.java" />
-        <option value="$PROJECT_DIR$/src/img/ImageHelper.java" />
-        <option value="$PROJECT_DIR$/src/img/ImgApplication.java" />
+        <option value="$PROJECT_DIR$/src/img/dto/Pixel.java" />
         <option value="$PROJECT_DIR$/src/img/utils/CoordinateUtil.java" />
+        <option value="$PROJECT_DIR$/src/img/common/Lunar.java" />
+        <option value="$PROJECT_DIR$/src/img/ImageHelper.java" />
+        <option value="$PROJECT_DIR$/src/img/logic/Processor.java" />
+        <option value="$PROJECT_DIR$/src/img/ImgApplication.java" />
         <option value="$PROJECT_DIR$/src/img/utils/FilterUtil.java" />
       </list>
     </option>
@@ -75,7 +101,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="448" />
     <option name="y" value="23" />
     <option name="width" value="1600" />
@@ -86,8 +112,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -116,6 +140,20 @@
               <item name="SE2017" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="img" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SE2017" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SE2017" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+              <item name="logic" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SE2017" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SE2017" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -123,6 +161,8 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -229,15 +269,17 @@
       <option name="presentableId" value="Default" />
       <updated>1524001730622</updated>
       <workItem from="1526904899910" duration="4602000" />
-      <workItem from="1526990213064" duration="2472000" />
+      <workItem from="1526990213064" duration="3789000" />
+      <workItem from="1527079350284" duration="1323000" />
+      <workItem from="1527163648520" duration="4629000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7074000" />
+    <option name="totallyTimeSpent" value="14343000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="448" y="23" width="1600" height="1049" extended-state="0" />
+    <frame x="0" y="23" width="2048" height="1049" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -254,8 +296,9 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32983193" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25609756" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20388834" />
       <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32983193" />
       <window_info anchor="right" id="Gradle" order="4" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -268,7 +311,6 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,6 +354,55 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/img/ImgApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/img/utils/FilterUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="48" column="47" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/img/utils/CoordinateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2220">
+          <caret line="155" column="48" selection-start-line="155" selection-start-column="48" selection-end-line="155" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/img/logic/Processor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1515">
+          <caret line="114" column="75" selection-start-line="114" selection-start-column="75" selection-end-line="114" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/img/ImgApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/img/utils/FilterUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="20" column="124" selection-start-line="20" selection-start-column="124" selection-end-line="20" selection-end-column="124" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/img/utils/CoordinateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2220">
+          <caret line="155" column="48" selection-start-line="155" selection-start-column="48" selection-end-line="155" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/img/ImgApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -386,45 +477,64 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/img/dto/Pixel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
           <folding>
-            <element signature="e#257#258#0" expanded="true" />
-            <element signature="e#312#313#0" expanded="true" />
+            <element signature="e#506#507#0" expanded="true" />
+            <element signature="e#565#566#0" expanded="true" />
+            <element signature="e#619#620#0" expanded="true" />
+            <element signature="e#433#434#0" expanded="true" />
+            <element signature="e#469#470#0" expanded="true" />
+            <element signature="e#524#525#0" expanded="true" />
+            <element signature="e#574#575#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/logic/Processor.java">
+    <entry file="file://$PROJECT_DIR$/src/img/common/Lunar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="111" column="57" lean-forward="true" selection-start-line="111" selection-start-column="57" selection-end-line="111" selection-end-column="57" />
+        <state relative-caret-position="45">
+          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/img/utils/CoordinateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2475">
+          <caret line="172" lean-forward="true" selection-start-line="172" selection-end-line="172" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/img/ImageHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="23" column="24" lean-forward="true" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+        <state relative-caret-position="-466">
+          <caret line="22" column="62" lean-forward="true" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/img/ImgApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/utils/CoordinateUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/img/logic/Processor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="155" column="48" selection-start-line="155" selection-start-column="48" selection-end-line="155" selection-end-column="48" />
+        <state relative-caret-position="301">
+          <caret line="78" column="96" lean-forward="true" selection-start-line="78" selection-start-column="96" selection-end-line="78" selection-end-column="96" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/img/utils/FilterUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="20" column="124" selection-start-line="20" selection-start-column="124" selection-end-line="20" selection-end-column="124" />
+        <state relative-caret-position="269">
+          <caret line="75" column="54" lean-forward="true" selection-start-line="75" selection-start-column="54" selection-end-line="75" selection-end-column="54" />
         </state>
       </provider>
     </entry>

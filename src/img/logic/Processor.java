@@ -1,28 +1,24 @@
 package img.logic;
 
 import img.ImageHelper;
+import img.common.Lunar;
 import img.dto.Image;
-import img.dto.NeighbourPixel;
 import img.dto.Pixel;
 import img.dto.Request;
 import img.utils.CoordinateUtil;
 import img.utils.FilterUtil;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.security.cert.CollectionCertStoreParameters;
 import java.util.*;
-import java.util.logging.Filter;
 import java.util.stream.Collectors;
 
 public class Processor {
 
     private double standardDeviation;
-    private List<List<Pixel>> imgInfo;
+    private List<List<Pixel>> imageAsPixels;
     public void processCorona(Request request){
         ImageHelper imageHelper = new ImageHelper();
         Image image = new Image();
-        this.imgInfo = imageHelper.getPixelsArrayFromImage(request, image);
+        this.imageAsPixels = imageHelper.getPixelsArrayFromImage(request, image);
 
         CoordinateUtil.updateSolarCenter(image);
         this.standardDeviation = request.getStandardDeviation();
@@ -33,9 +29,9 @@ public class Processor {
         TreeMap<Double, Pixel> anglePixelMap = null;
         Pixel currentPixel = null;
         List<Double> angles = null;
-        for(int i = 0; i < this.imgInfo.size(); i++){
-            for(int j = 0; j < this.imgInfo.get(i).size(); j++){
-                currentPixel = this.imgInfo.get(i).get(j);
+        for(int i = 0; i < this.imageAsPixels.size(); i++){
+            for(int j = 0; j < this.imageAsPixels.get(i).size(); j++){
+                currentPixel = this.imageAsPixels.get(i).get(j);
                 CoordinateUtil.updatePolarCoordinates(currentPixel);
 
                 if (radAngle.get(currentPixel.getRoundedRadius()) != null && radAngle.get(currentPixel.getRoundedRadius()).size() > 0){
@@ -57,20 +53,30 @@ public class Processor {
             }
         }
 
-        List<List<Integer>> filteredPixelValues = this.imgInfo.stream().map(colPixels -> {
-             return colPixels.stream().map(pixel -> {
+/*        List<List<Integer>> filteredPixelValues = this.imageAsPixels.stream().map(colPixels -> {
+            return colPixels.stream().map(pixel -> {
 //                 System.out.println("Working on ("+pixel.getX()+", "+pixel.getY()+")");
-                int filteredValue = findNeighbouringPixels(pixel, radAnglePixelMap);
-//                return filteredValue < 0 ? 0 : filteredValue;
+                int filteredValue = 0;
+                if (pixel.getRadius() > 10) {
+                    filteredValue = findNeighbouringPixels(pixel, radAnglePixelMap);
+                }
+                return filteredValue;
+            }).collect(Collectors.toList());
+        }).collect(Collectors.toList());*/
+
+        this.imageAsPixels.stream().map(colPixels -> {
+            return colPixels.stream().map(pixel -> {
+//                 System.out.println("Working on ("+pixel.getX()+", "+pixel.getY()+")");
+                int filteredValue = 0;
+                if (pixel.getRadius() > Lunar.radius) {
+                    filteredValue = findNeighbouringPixels(pixel, radAnglePixelMap);
+                }
+                pixel.setFilteredValue(filteredValue);
                 return filteredValue;
             }).collect(Collectors.toList());
         }).collect(Collectors.toList());
-
-//        filteredValue = findNeighbouringPixelsAndApplyFilter(this.imgInfo.get(20).get(20));
-//        pixelValues.add(filteredValue < 0 ? 0 : filteredValue);
-//        pixelValues.add(filteredValue);
-
-        int[][] normalizedIntArray = CoordinateUtil.convertBackToIntArray(FilterUtil.normalize(filteredPixelValues));
+        FilterUtil.normalizeFilteredPixels(this.imageAsPixels);
+        int[][] normalizedIntArray = CoordinateUtil.convertPixelsToIntArray(this.imageAsPixels);
 //        printAllValues(normalizedIntArray);
         String fileName = request.getFilePath().substring(request.getFilePath().lastIndexOf('/')+1, request.getFilePath().length());
         imageHelper.writeToTiff(normalizedIntArray, image.getWidth(), image.getHeight(), this.standardDeviation, fileName);
@@ -109,6 +115,9 @@ public class Processor {
             SortedMap<Double, Pixel> angleSubMap = angleMap.getValue().subMap(lowerAngleRange, upperAngleRange);
             for (Map.Entry<Double, Pixel> angleMapEntry : angleSubMap.entrySet()) {
 //                System.out.println(currentPixel.getxOffset()+"\t"+currentPixel.getyOffset()+"\t"+angleMapEntry.getValue().getxOffset()+"\t"+angleMapEntry.getValue().getyOffset()+"\t");
+                if (angleMapEntry.getValue().getRadius() <= Lunar.radius){
+                    continue;
+                }
                 double kernelValue = FilterUtil.calculateKernel(angleMapEntry.getValue(), currentPixel, this.standardDeviation);
                 sumA += (angleMapEntry.getValue().getPixelValue() * kernelValue);
                 sumB += kernelValue;
@@ -123,7 +132,7 @@ public class Processor {
 
     private int getPixelValueOf(int x, int y){
         try{
-            return this.imgInfo.get(x).get(y).getPixelValue();
+            return this.imageAsPixels.get(x).get(y).getPixelValue();
         } catch(Exception e){
             System.out.println(e.getStackTrace());
             return 0;

@@ -1,5 +1,6 @@
 package img;
 
+import img.common.Lunar;
 import img.dto.Image;
 import img.dto.Pixel;
 import img.dto.Request;
@@ -70,7 +71,7 @@ public class ImageHelper {
         // Set the data of the tiled image to be the raster.
         tiledImage.setData(wr);
         // Save the image on a file.
-        String fileName = filename+"_"+standardDeviation+".tiff";
+        String fileName = filename+"_"+standardDeviation+"_"+Lunar.radius +".tiff";
         System.out.println(filename);
         JAI.create("filestore",tiledImage,fileName,"TIFF");
 

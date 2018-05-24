@@ -167,4 +167,16 @@ public class CoordinateUtil {
 
         return pixelValues;
     }
+
+    public static int[][] convertPixelsToIntArray(List<List<Pixel>> pixels){
+        int[][] pixelValues = new int[pixels.size()][pixels.get(0).size()];
+
+        for (int i = 0; i < pixels.size(); i++){
+            for (int j = 0; j < pixels.get(i).size(); j++){
+                pixelValues[i][j] = pixels.get(i).get(j).getNormalizedValue();
+            }
+        }
+
+        return pixelValues;
+    }
 }

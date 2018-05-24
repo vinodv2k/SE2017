@@ -1,5 +1,6 @@
 package img.utils;
 
+import img.common.Lunar;
 import img.common.SolarCenter;
 import img.dto.NeighbourPixel;
 import img.dto.Pixel;
@@ -46,15 +47,7 @@ public class FilterUtil {
         for(int i = 0; i < filteredPixelValues.size(); i++){
             for(int j = 0; j < filteredPixelValues.get(i).size(); j++){
                 normalizedValue = Double.valueOf(newMax * ((filteredPixelValues.get(i).get(j).intValue() - minValue) / range)).intValue();
-//                normalizedValue = Double.valueOf((newMax / range) * (filteredPixelValues.get(i).get(j).intValue() - minValue)).intValue();
-//                normalizedValue = Double.valueOf(((filteredPixelValues.get(i).get(j).intValue() - minValue) * ((newMax-newMin)/(maxValue-minValue)))+newMin).intValue();
-/*                if ( i < SolarCenter.solarCenterX && j < SolarCenter.solarCenterY){
-                    rowPixels.add(60000);
-                } else {
-                    rowPixels.add(normalizedValue);
-                }*/
                 rowPixels.add(normalizedValue);
-
             }
             normalizedPixelValues.add(rowPixels);
             rowPixels = new ArrayList<>();
@@ -65,6 +58,46 @@ public class FilterUtil {
         * */
 
         return normalizedPixelValues;
+    }
+
+
+    public static void  normalizeFilteredPixels(List<List<Pixel>> imageAsPixels){
+        int[] extremes = findExtremeValues(imageAsPixels);
+        double minValue = extremes[0];
+        double maxValue = extremes[1];
+
+        double range = maxValue - minValue;
+
+        final int newMin = 0;
+        final int newMax = 65535;
+
+        imageAsPixels.stream().forEach(colPixelList -> {
+            colPixelList.stream().forEach(pixel -> {
+                if(pixel.getRadius() <= Lunar.radius){
+                    pixel.setNormalizedValue(0);
+                } else {
+                    int normalizedValue = Double.valueOf(newMax * (pixel.getFilteredValue() - minValue) / range).intValue();
+                    pixel.setNormalizedValue(normalizedValue);
+                }
+            });
+        });
+    }
+
+    private static int[] findExtremeValues(List<List<Pixel>> pixelValues) {
+        int maxValue = 0;
+        int minValue = 0;
+        for (List<Pixel> columnPixels: pixelValues) {
+            for(Pixel pixel: columnPixels){
+                int pixelValue = pixel.getFilteredValue();
+                if(pixelValue > maxValue){
+                    maxValue = pixelValue;
+                }
+                if(pixelValue < minValue){
+                    minValue = pixelValue;
+                }
+            }
+        }
+        return new int[]{minValue, maxValue};
     }
 
     private static int[] findMaxValue(List<List<Integer>> pixelValues) {
