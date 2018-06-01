@@ -69,9 +69,10 @@ public class Processor {
 //                 System.out.println("Working on ("+pixel.getX()+", "+pixel.getY()+")");
                 int filteredValue = 0;
                 if (pixel.getRadius() > Lunar.radius) {
-                    filteredValue = findNeighbouringPixels(pixel, radAnglePixelMap);
+                    findNeighbouringPixels(pixel, radAnglePixelMap);
+                    filteredValue = pixel.getProcessedValue();
                 }
-                pixel.setFilteredValue(filteredValue);
+//                pixel.setFilteredValue(filteredValue);
                 return filteredValue;
             }).collect(Collectors.toList());
         }).collect(Collectors.toList());
@@ -127,6 +128,8 @@ public class Processor {
 
         int subtract = sumB == 0 ? 0 : Long.valueOf(Math.round(sumA / sumB)).intValue();
         int filteredPixelValue = currentPixel.getPixelValue() - subtract;
+        currentPixel.setFilteredValue(filteredPixelValue);
+        currentPixel.setProcessedValue((2*currentPixel.getPixelValue()) + (2 * currentPixel.getFilteredValue()));
         return filteredPixelValue;
     }
 

@@ -13,10 +13,10 @@ import java.util.List;
 public class ImgApplication {
     public static void main(String[] args) throws Exception {
         Request request = new Request();
-        request.setStandardDeviation(1);
+        request.setStandardDeviation(4);
         request.setFilePath("./img/1_250_PC.tif");
 
-        Lunar.radius = 30;
+        Lunar.radius = 20;
 
         Processor processor = new Processor();
         processor.processCorona(request);

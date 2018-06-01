@@ -65,18 +65,21 @@ public class FilterUtil {
         int[] extremes = findExtremeValues(imageAsPixels);
         double minValue = extremes[0];
         double maxValue = extremes[1];
-
+        System.out.println(minValue + " to " + maxValue);
         double range = maxValue - minValue;
 
-        final int newMin = 0;
+        final int newMin = 32768;
         final int newMax = 65535;
+        final int newRange = newMax - newMin;
 
         imageAsPixels.stream().forEach(colPixelList -> {
             colPixelList.stream().forEach(pixel -> {
                 if(pixel.getRadius() <= Lunar.radius){
                     pixel.setNormalizedValue(0);
                 } else {
-                    int normalizedValue = Double.valueOf(newMax * (pixel.getFilteredValue() - minValue) / range).intValue();
+//                    int normalizedValue = Double.valueOf((range)*(pixel.getFilteredValue() - minValue)).intValue();
+//                    int normalizedValue = Double.valueOf((32765) + (((pixel.getFilteredValue() - minValue) * 65535) / 32765)).intValue();
+                    int normalizedValue = Double.valueOf(newRange * (pixel.getFilteredValue() - minValue) / range).intValue();
                     pixel.setNormalizedValue(normalizedValue);
                 }
             });
@@ -88,6 +91,9 @@ public class FilterUtil {
         int minValue = 0;
         for (List<Pixel> columnPixels: pixelValues) {
             for(Pixel pixel: columnPixels){
+                if(pixel.getRadius() <= Lunar.radius){
+                    continue;
+                }
                 int pixelValue = pixel.getFilteredValue();
                 if(pixelValue > maxValue){
                     maxValue = pixelValue;

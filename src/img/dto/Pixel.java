@@ -15,6 +15,15 @@ public class Pixel {
     private double degrees;
     private int filteredValue;
     private int normalizedValue;
+    private int processedValue;
+
+    public int getProcessedValue() {
+        return processedValue;
+    }
+
+    public void setProcessedValue(int processedValue) {
+        this.processedValue = processedValue;
+    }
 
     public int getNormalizedValue() {
         return normalizedValue;
