@@ -75,7 +75,7 @@ public class CoordinateUtil {
 //        System.out.println("Radius: " + pixel.getRadius());
     }
 
-    private static double round(double value, int places) {
+    public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
         if (Double.isNaN(value)){
             return 0;
@@ -112,11 +112,9 @@ public class CoordinateUtil {
         if (x == 0){
             if (y < 0){
                 setAngleAndRoundedAngle(pixel, (-1)*DegreeConstants.RADIANS_90);
-//                System.out.println(x + "," + y);
                 return;
             } else {
                 setAngleAndRoundedAngle(pixel, DegreeConstants.RADIANS_90);
-//                System.out.println(x + "," + y);
                 return;
             }
         }
@@ -135,7 +133,7 @@ public class CoordinateUtil {
         setAngleAndRoundedAngle(pixel, degrees);
     }
 
-    private static void setAngleAndRoundedAngle(Pixel pixel, double degrees){
+    public static void setAngleAndRoundedAngle(Pixel pixel, double degrees){
         pixel.setAngle(degrees);
         pixel.setRoundedAngle(round(pixel.getAngle(), 2));
     }

@@ -72,7 +72,7 @@ public class ImageHelper {
         tiledImage.setData(wr);
         // Save the image on a file.
         String fileName = filename+"_"+standardDeviation+"_"+Lunar.radius +".tiff";
-        System.out.println(filename);
+        System.out.println("Output file: "+fileName);
         JAI.create("filestore",tiledImage,fileName,"TIFF");
 
         System.out.println(wr);

@@ -95,45 +95,55 @@ public class Processor {
     }
 
     private int findNeighbouringPixels(Pixel currentPixel, TreeMap<Double, TreeMap<Double, Pixel>> radAnglePixelMap){
-//        this.standardDeviation = 1;
-//        CoordinateUtil.updatePolarCoordinates(currentPixel);
-/*        if (currentPixel.getRoundedRadius() == 22.62){
-            return 0;
-        }*/
-
         double radiusRangeLower = (currentPixel.getRadius()) - (2 * this.standardDeviation);
         double radiusRangeUpper = (currentPixel.getRadius()) + (2 * this.standardDeviation);
 
         double lowerAngleRange = (currentPixel.getAngle() - ((2 * this.standardDeviation) / currentPixel.getRadius()));
         double upperAngleRange = (currentPixel.getAngle() + ((2 * this.standardDeviation) / currentPixel.getRadius()));
 
-        Pixel neighbourPixel = null;
         double sumA = 0; double sumB = 0;
-        int totalNeighbouringPixels = 0;
-        SortedMap<Double,TreeMap<Double, Pixel>> subMapEntry = radAnglePixelMap.subMap(radiusRangeLower, radiusRangeUpper);
-        for (Map.Entry<Double, TreeMap<Double, Pixel>> angleMap : subMapEntry.entrySet()) {
-//            double radius = angleMap.getKey();
-            SortedMap<Double, Pixel> angleSubMap = angleMap.getValue().subMap(lowerAngleRange, upperAngleRange);
+
+        Pixel n_pixel = null;
+        SortedMap<Double,TreeMap<Double, Pixel>> radToAnglesSubMap = radAnglePixelMap.subMap(radiusRangeLower, radiusRangeUpper);
+        for (Map.Entry<Double, TreeMap<Double, Pixel>> anglesMap : radToAnglesSubMap.entrySet()) {
+            if (anglesMap.getKey() <= Lunar.radius){
+                continue;
+            }
+
+            // When lowerAngleRange is out of range with the angles, adjust the angle value to get the offset of the angle
+            // from the max angle range which is -3.14. After -3.14, it is considered 0.01 and not -3.15
+            // So, start from offset and find all the angles until 0.01. Then, reset the lowerAngleRange to -3.14 to continue with the normal process.
+            if(lowerAngleRange < -3.14){
+                double diff = CoordinateUtil.round((-3.14 + Math.abs(lowerAngleRange)), 2);
+                for(double i = diff; i > 0.01; i = i - 0.01){
+                    n_pixel = anglesMap.getValue().get(i);
+                    if (n_pixel == null){
+                        continue;
+                    }
+                    System.out.println("hi");
+                    double kernelValue = FilterUtil.calculateKernel(n_pixel, currentPixel, this.standardDeviation);
+                    sumA += (n_pixel.getPixelValue() * kernelValue);
+                    sumB += kernelValue;
+                }
+                lowerAngleRange = -3.14;
+            }
+
+            SortedMap<Double, Pixel> angleSubMap = anglesMap.getValue().subMap(lowerAngleRange, upperAngleRange);
+
             for (Map.Entry<Double, Pixel> angleMapEntry : angleSubMap.entrySet()) {
 //                System.out.println(currentPixel.getxOffset()+"\t"+currentPixel.getyOffset()+"\t"+angleMapEntry.getValue().getxOffset()+"\t"+angleMapEntry.getValue().getyOffset()+"\t");
-                if (angleMapEntry.getValue().getRadius() <= Lunar.radius){
-                    return 0;
-                }
+                /*if (angleMapEntry.getValue().getRadius() <= Lunar.radius){
+                    continue;
+                }*/
 
                 double kernelValue = FilterUtil.calculateKernel(angleMapEntry.getValue(), currentPixel, this.standardDeviation);
                 sumA += (angleMapEntry.getValue().getPixelValue() * kernelValue);
                 sumB += kernelValue;
-                totalNeighbouringPixels++;
             }
         }
 
         int subtract = sumB == 0 ? 0 : Long.valueOf(Math.round(sumA / sumB)).intValue();
         int filteredPixelValue = currentPixel.getPixelValue() - subtract;
-
-/*        if(currentPixel.getyOffset() == 0){
-            System.out.println(currentPixel.getxOffset()+"\t"+currentPixel.getyOffset()
-                +"\t"+filteredPixelValue+"\t");
-        }*/
         currentPixel.setFilteredValue(filteredPixelValue);
         currentPixel.setProcessedValue((2*currentPixel.getPixelValue()) + (2 * currentPixel.getFilteredValue()));
         return filteredPixelValue;
