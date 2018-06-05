@@ -119,6 +119,7 @@ public class Processor {
                 if (angleMapEntry.getValue().getRadius() <= Lunar.radius){
                     continue;
                 }
+
                 double kernelValue = FilterUtil.calculateKernel(angleMapEntry.getValue(), currentPixel, this.standardDeviation);
                 sumA += (angleMapEntry.getValue().getPixelValue() * kernelValue);
                 sumB += kernelValue;
@@ -128,6 +129,11 @@ public class Processor {
 
         int subtract = sumB == 0 ? 0 : Long.valueOf(Math.round(sumA / sumB)).intValue();
         int filteredPixelValue = currentPixel.getPixelValue() - subtract;
+
+/*        if(currentPixel.getyOffset() == 0){
+            System.out.println(currentPixel.getxOffset()+"\t"+currentPixel.getyOffset()
+                +"\t"+filteredPixelValue+"\t");
+        }*/
         currentPixel.setFilteredValue(filteredPixelValue);
         currentPixel.setProcessedValue((2*currentPixel.getPixelValue()) + (2 * currentPixel.getFilteredValue()));
         return filteredPixelValue;

@@ -10,16 +10,9 @@ import java.util.List;
 
 public class FilterUtil {
     public static double calculateKernel(Pixel neighbourPixel, Pixel pixel, double sd){
-//        double a = Math.pow((pixel.getRadius() - neighbourPixel.getRadius()), 2);
-        double a = Math.pow(pixel.getRadius(), 2) + Math.pow(neighbourPixel.getRadius(), 2) - (2 * pixel.getRadius() * neighbourPixel.getRadius());
-//        double b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getRoundedAngle(), neighbourPixel.getRoundedAngle()), 2);
-
-        double x = pixel.getRadius() * pixel.getAngle();
-        double y = pixel.getRadius() * neighbourPixel.getAngle();
-
-//        double b = Math.pow(x, 2) + Math.pow(y, 2) - 2 * x * y;
-
-        double b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngle() , neighbourPixel.getAngle()), 2);
+        double a = Math.pow((pixel.getRadius()-neighbourPixel.getRadius()), 2);
+        double b = Math.pow(pixel.getRadius() * (pixel.getAngle() - neighbourPixel
+            .getAngle()), 2);
 
         double numerator =  a + b;
         double powerFactor = numerator / Math.pow((sd * 2), 2);
@@ -78,8 +71,9 @@ public class FilterUtil {
                     pixel.setNormalizedValue(0);
                 } else {
 //                    int normalizedValue = Double.valueOf((range)*(pixel.getFilteredValue() - minValue)).intValue();
-//                    int normalizedValue = Double.valueOf((32765) + (((pixel.getFilteredValue() - minValue) * 65535) / 32765)).intValue();
-                    int normalizedValue = Double.valueOf(newRange * (pixel.getFilteredValue() - minValue) / range).intValue();
+                    int normalizedValue = Double.valueOf((newMax) + (((pixel.getFilteredValue() - minValue) *
+                        newMax) / range)).intValue();
+//                    int normalizedValue = Double.valueOf(newRange * (pixel.getFilteredValue() - minValue) / range).intValue();
                     pixel.setNormalizedValue(normalizedValue);
                 }
             });
@@ -91,9 +85,9 @@ public class FilterUtil {
         int minValue = 0;
         for (List<Pixel> columnPixels: pixelValues) {
             for(Pixel pixel: columnPixels){
-                if(pixel.getRadius() <= Lunar.radius){
+                /*if(pixel.getRadius() <= Lunar.radius){
                     continue;
-                }
+                }*/
                 int pixelValue = pixel.getFilteredValue();
                 if(pixelValue > maxValue){
                     maxValue = pixelValue;

@@ -16,7 +16,7 @@ public class ImgApplication {
         request.setStandardDeviation(4);
         request.setFilePath("./img/1_250_PC.tif");
 
-        Lunar.radius = 20;
+        Lunar.radius = 30;
 
         Processor processor = new Processor();
         processor.processCorona(request);
