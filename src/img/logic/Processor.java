@@ -117,7 +117,7 @@ public class Processor {
             for (Map.Entry<Double, Pixel> angleMapEntry : angleSubMap.entrySet()) {
 //                System.out.println(currentPixel.getxOffset()+"\t"+currentPixel.getyOffset()+"\t"+angleMapEntry.getValue().getxOffset()+"\t"+angleMapEntry.getValue().getyOffset()+"\t");
                 if (angleMapEntry.getValue().getRadius() <= Lunar.radius){
-                    continue;
+                    return 0;
                 }
 
                 double kernelValue = FilterUtil.calculateKernel(angleMapEntry.getValue(), currentPixel, this.standardDeviation);

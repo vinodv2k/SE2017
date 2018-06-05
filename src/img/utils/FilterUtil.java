@@ -61,7 +61,7 @@ public class FilterUtil {
         System.out.println(minValue + " to " + maxValue);
         double range = maxValue - minValue;
 
-        final int newMin = 32768;
+        final int newMin = 0;
         final int newMax = 65535;
         final int newRange = newMax - newMin;
 
@@ -71,9 +71,9 @@ public class FilterUtil {
                     pixel.setNormalizedValue(0);
                 } else {
 //                    int normalizedValue = Double.valueOf((range)*(pixel.getFilteredValue() - minValue)).intValue();
-                    int normalizedValue = Double.valueOf((newMax) + (((pixel.getFilteredValue() - minValue) *
-                        newMax) / range)).intValue();
-//                    int normalizedValue = Double.valueOf(newRange * (pixel.getFilteredValue() - minValue) / range).intValue();
+//                    int normalizedValue = Double.valueOf((newMax) + (((pixel.getFilteredValue() - minValue) *
+//                        newMax) / newRange)).intValue();
+                    int normalizedValue = Double.valueOf(newRange * (pixel.getFilteredValue() - minValue) / range).intValue();
                     pixel.setNormalizedValue(normalizedValue);
                 }
             });
