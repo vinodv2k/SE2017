@@ -61,18 +61,14 @@ public class CoordinateUtil {
     }
 
     private static Pixel updatePixelOffsetFromSolarCenter(Pixel pixel){
-       /* if (pixel.getQuadrant() == 0) {
-            return pixel;
-        }*/
-        pixel.setxOffset(pixel.getX() - SolarCenter.getSolarCenterX());
-        pixel.setyOffset(SolarCenter.getSolarCenterY() - pixel.getY());
+        pixel.setxOffset(pixel.getY() - SolarCenter.getSolarCenterX());
+        pixel.setyOffset(SolarCenter.getSolarCenterY() - pixel.getX());
         return pixel;
     }
 
     private static void updateRadius(Pixel pixel) {
         pixel.setRadius(Math.sqrt(Math.pow(pixel.getxOffset(), 2) + Math.pow(pixel.getyOffset(), 2)));
         pixel.setRoundedRadius(round(pixel.getRadius(), 2));
-//        System.out.println("Radius: " + pixel.getRadius());
     }
 
     public static double round(double value, int places) {
