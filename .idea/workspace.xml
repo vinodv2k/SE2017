@@ -5,12 +5,13 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/1_250_PC.tif_1.0_30.tiff" afterPath="$PROJECT_DIR$/1_250_PC.tif_1.0_30.tiff" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/1_250_PC.tif_2.0_30.tiff" afterPath="$PROJECT_DIR$/1_250_PC.tif_2.0_30.tiff" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/1_250_PC.tif_4.0_30.tiff" afterPath="$PROJECT_DIR$/1_250_PC.tif_4.0_30.tiff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/1_250_PC.tif_8.0_30.tiff" afterPath="$PROJECT_DIR$/1_250_PC.tif_8.0_30.tiff" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SE2017/img/ImageHelper.class" afterPath="$PROJECT_DIR$/out/production/SE2017/img/ImageHelper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SE2017/img/logic/Processor.class" afterPath="$PROJECT_DIR$/out/production/SE2017/img/logic/Processor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SE2017/img/ImgApplication.class" afterPath="$PROJECT_DIR$/out/production/SE2017/img/ImgApplication.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SE2017/img/utils/CoordinateUtil.class" afterPath="$PROJECT_DIR$/out/production/SE2017/img/utils/CoordinateUtil.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/img/ImgApplication.java" afterPath="$PROJECT_DIR$/src/img/ImgApplication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/img/common/DegreeConstants.java" afterPath="$PROJECT_DIR$/src/img/common/DegreeConstants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/img/logic/Processor.java" afterPath="$PROJECT_DIR$/src/img/logic/Processor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/img/utils/CoordinateUtil.java" afterPath="$PROJECT_DIR$/src/img/utils/CoordinateUtil.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -23,7 +24,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ImgApplication.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ImgApplication.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/img/ImgApplication.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
@@ -33,11 +34,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoordinateUtil.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CoordinateUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/img/utils/CoordinateUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="70" column="60" lean-forward="false" selection-start-line="70" selection-start-column="60" selection-end-line="70" selection-end-column="60" />
+            <state relative-caret-position="729">
+              <caret line="104" column="24" lean-forward="true" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Processor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/img/logic/Processor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="511">
+              <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -65,11 +76,12 @@
       <list>
         <option value="$PROJECT_DIR$/src/img/dto/Pixel.java" />
         <option value="$PROJECT_DIR$/src/img/common/Lunar.java" />
-        <option value="$PROJECT_DIR$/src/img/ImageHelper.java" />
         <option value="$PROJECT_DIR$/src/img/utils/FilterUtil.java" />
+        <option value="$PROJECT_DIR$/src/img/ImageHelper.java" />
+        <option value="$PROJECT_DIR$/src/img/common/DegreeConstants.java" />
+        <option value="$PROJECT_DIR$/src/img/utils/CoordinateUtil.java" />
         <option value="$PROJECT_DIR$/src/img/logic/Processor.java" />
         <option value="$PROJECT_DIR$/src/img/ImgApplication.java" />
-        <option value="$PROJECT_DIR$/src/img/utils/CoordinateUtil.java" />
       </list>
     </option>
   </component>
@@ -157,7 +169,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="coordin&#9;FILE&#9;file:///Users/Shared/Documents/vinod/SE2017/src/img/utils/CoordinateUtil.java&#10;coor&#9;PSI&#9;JAVA://img.utils.CoordinateUtil" />
+    <property name="SearchEverywhereHistoryKey" value="process&#9;FILE&#9;file:///Users/Shared/Documents/vinod/SE2017/src/img/logic/Processor.java&#10;coordin&#9;FILE&#9;file:///Users/Shared/Documents/vinod/SE2017/src/img/utils/CoordinateUtil.java&#10;coor&#9;PSI&#9;JAVA://img.utils.CoordinateUtil" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -298,12 +310,12 @@
       <workItem from="1527079350284" duration="1323000" />
       <workItem from="1527163648520" duration="4629000" />
       <workItem from="1528200191275" duration="2898000" />
-      <workItem from="1528286347215" duration="955000" />
+      <workItem from="1528286347215" duration="7326000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18815000" />
+    <option name="totallyTimeSpent" value="25186000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="977" extended-state="0" />
@@ -328,7 +340,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39909297" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -346,7 +358,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="17" />
+      <option name="time" value="27" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -380,13 +392,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/img/logic/Processor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1515">
-          <caret line="114" column="75" lean-forward="false" selection-start-line="114" selection-start-column="75" selection-end-line="114" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/img/ImgApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -489,6 +494,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="37" lean-forward="false" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -711,14 +717,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/ImageHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/img/utils/FilterUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -727,10 +725,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/img/common/DegreeConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="52" lean-forward="false" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/img/ImageHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="36" column="59" lean-forward="true" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/img/logic/Processor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="136" column="17" lean-forward="true" selection-start-line="136" selection-start-column="17" selection-end-line="136" selection-end-column="17" />
+        <state relative-caret-position="511">
+          <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/img/utils/CoordinateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="729">
+          <caret line="104" column="24" lean-forward="true" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -739,14 +761,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="15" column="38" lean-forward="false" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/utils/CoordinateUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="70" column="60" lean-forward="false" selection-start-line="70" selection-start-column="60" selection-end-line="70" selection-end-column="60" />
           <folding />
         </state>
       </provider>

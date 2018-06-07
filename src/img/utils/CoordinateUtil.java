@@ -61,8 +61,8 @@ public class CoordinateUtil {
     }
 
     private static Pixel updatePixelOffsetFromSolarCenter(Pixel pixel){
-        pixel.setxOffset(pixel.getY() - SolarCenter.getSolarCenterX());
-        pixel.setyOffset(SolarCenter.getSolarCenterY() - pixel.getX());
+        pixel.setxOffset(pixel.getX() - SolarCenter.getSolarCenterX());
+        pixel.setyOffset(SolarCenter.getSolarCenterY() - pixel.getY());
         return pixel;
     }
 
@@ -86,28 +86,29 @@ public class CoordinateUtil {
         float x = pixel.getxOffset();
         float y = pixel.getyOffset();
         int q = pixel.getQuadrant();
-        double degrees = 0;
+        double radians = 0;
+
+        double degree = Math.atan(Math.abs(y) / Math.abs(x));
 
         switch (q){
-            case 1: degrees =  Math.atan(Math.abs(y) / Math.abs(x));
+            case 1: radians = degree;
                 break;
-            case 2: degrees =  Math.atan(y/x) + (DegreeConstants.RADIANS_180);
+            case 2: radians = DegreeConstants.RADIANS_90 + degree;
                 break;
-            case 3: degrees =  ((q-1) * DegreeConstants.RADIANS_90) + ((-1) * Math.atan(y/x));
-                degrees = (-1) * degrees;
+            case 3: radians =  DegreeConstants.RADIANS_180 + degree;
                 break;
-            case 4: degrees =  Math.atan(y/x);
+            case 4: radians =  DegreeConstants.RADIANS_270 + degree;
                 break;
         }
 
         if(x == 0 && y == 0){
-            degrees = 0;
+            radians = 0;
             pixel.setAngleCooefficient(0);
         }
 
         if (x == 0){
             if (y < 0){
-                setAngleAndRoundedAngle(pixel, (-1)*DegreeConstants.RADIANS_90);
+                setAngleAndRoundedAngle(pixel, DegreeConstants.RADIANS_270);
                 return;
             } else {
                 setAngleAndRoundedAngle(pixel, DegreeConstants.RADIANS_90);
@@ -126,7 +127,7 @@ public class CoordinateUtil {
                 return;
             }
         }
-        setAngleAndRoundedAngle(pixel, degrees);
+        setAngleAndRoundedAngle(pixel, radians);
     }
 
     public static void setAngleAndRoundedAngle(Pixel pixel, double degrees){

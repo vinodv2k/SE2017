@@ -1,6 +1,7 @@
 package img.logic;
 
 import img.ImageHelper;
+import img.common.DegreeConstants;
 import img.common.Lunar;
 import img.dto.Image;
 import img.dto.Pixel;
@@ -113,8 +114,21 @@ public class Processor {
             // When lowerAngleRange is out of range with the angles, adjust the angle value to get the offset of the angle
             // from the max angle range which is -3.14. After -3.14, it is considered 0.01 and not -3.15
             // So, start from offset and find all the angles until 0.01. Then, reset the lowerAngleRange to -3.14 to continue with the normal process.
-            if(lowerAngleRange < -3.14){
-                double diff = CoordinateUtil.round((-3.14 + Math.abs(lowerAngleRange)), 2);
+            if(upperAngleRange > DegreeConstants.RADIANS_360){
+                for(double i  = upperAngleRange; i > DegreeConstants.RADIANS_360; i = i - 0.01) {
+                    double adjustedAngle = i - DegreeConstants.RADIANS_360;
+                    n_pixel = anglesMap.getValue().get(adjustedAngle);
+                    if (n_pixel == null){
+                        continue;
+                    }
+                    System.out.println("hi");
+                    double kernelValue = FilterUtil.calculateKernel(n_pixel, currentPixel, this.standardDeviation);
+                    sumA += (n_pixel.getPixelValue() * kernelValue);
+                    sumB += kernelValue;
+                }
+                upperAngleRange = DegreeConstants.RADIANS_360;
+
+/*                double diff = CoordinateUtil.round((-3.14 + Math.abs(lowerAngleRange)), 2);
                 for(double i = diff; i > 0.01; i = i - 0.01){
                     n_pixel = anglesMap.getValue().get(i);
                     if (n_pixel == null){
@@ -125,7 +139,7 @@ public class Processor {
                     sumA += (n_pixel.getPixelValue() * kernelValue);
                     sumB += kernelValue;
                 }
-                lowerAngleRange = -3.14;
+                lowerAngleRange = -3.14;*/
             }
 
             SortedMap<Double, Pixel> angleSubMap = anglesMap.getValue().subMap(lowerAngleRange, upperAngleRange);
