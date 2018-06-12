@@ -16,7 +16,10 @@ public class CoordinateUtil {
         pixel.setQuadrant(findQuadrant(pixel.getX(), pixel.getY()));
         updatePixelOffsetFromSolarCenter(pixel);
         updateRadius(pixel);
-        updateDegrees(pixel);
+
+        double angleInRadians = findPolarAngle(pixel.getxOffset(), pixel.getyOffset(), pixel.getQuadrant());
+        setAngleAndRoundedAngle(pixel, angleInRadians);
+//        updateDegrees(pixel);
     }
 
     public static void updateSolarCenter(Image image){
@@ -128,6 +131,35 @@ public class CoordinateUtil {
             }
         }
         setAngleAndRoundedAngle(pixel, radians);
+    }
+
+    public static double findPolarAngle(float x, float y, int q) {
+        if(x == 0 && y == 0){
+            return 0;
+        }
+
+        if (x == 0){
+            return (y < 0) ? DegreeConstants.RADIANS_270 : DegreeConstants.RADIANS_90;
+        }
+
+        if (y == 0){
+            return (x < 0) ? DegreeConstants.RADIANS_180 : DegreeConstants.RADIANS_0;
+        }
+
+        double angle = Math.atan(Math.abs(y) / Math.abs(x));
+
+        switch (q){
+            case 1: return angle;
+
+            case 2: return DegreeConstants.RADIANS_90 + angle;
+
+            case 3: return DegreeConstants.RADIANS_180 + angle;
+
+            case 4: return DegreeConstants.RADIANS_270 + angle;
+        }
+
+        System.out.println("Default .. Shouldn't see this line at all");
+        return 0;
     }
 
     public static void setAngleAndRoundedAngle(Pixel pixel, double degrees){

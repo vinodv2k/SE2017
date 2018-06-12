@@ -116,19 +116,19 @@ public class Processor {
             // So, start from offset and find all the angles until 0.01. Then, reset the lowerAngleRange to -3.14 to continue with the normal process.
             if(upperAngleRange > DegreeConstants.RADIANS_360){
                 for(double i  = upperAngleRange; i > DegreeConstants.RADIANS_360; i = i - 0.01) {
-                    double adjustedAngle = i - DegreeConstants.RADIANS_360;
+                    double adjustedAngle = CoordinateUtil.round((i - DegreeConstants.RADIANS_360), 2);
                     n_pixel = anglesMap.getValue().get(adjustedAngle);
                     if (n_pixel == null){
                         continue;
                     }
-                    System.out.println("hi");
+                    System.out.println(adjustedAngle);
                     double kernelValue = FilterUtil.calculateKernel(n_pixel, currentPixel, this.standardDeviation);
                     sumA += (n_pixel.getPixelValue() * kernelValue);
                     sumB += kernelValue;
                 }
                 upperAngleRange = DegreeConstants.RADIANS_360;
 
-/*                double diff = CoordinateUtil.round((-3.14 + Math.abs(lowerAngleRange)), 2);
+                /*double diff = CoordinateUtil.round((-3.14 + Math.abs(lowerAngleRange)), 2);
                 for(double i = diff; i > 0.01; i = i - 0.01){
                     n_pixel = anglesMap.getValue().get(i);
                     if (n_pixel == null){
@@ -156,10 +156,13 @@ public class Processor {
             }
         }
 
-        int subtract = sumB == 0 ? 0 : Long.valueOf(Math.round(sumA / sumB)).intValue();
+        int subtract = (sumB == 0) ? Long.valueOf(Math.round(sumA)).intValue() : Long.valueOf(Math.round(sumA / sumB)).intValue();
         int filteredPixelValue = currentPixel.getPixelValue() - subtract;
         currentPixel.setFilteredValue(filteredPixelValue);
         currentPixel.setProcessedValue((2*currentPixel.getPixelValue()) + (2 * currentPixel.getFilteredValue()));
+//        if(currentPixel.getyOffset() == 0 && currentPixel.getxOffset() > 0){
+//            System.out.println(currentPixel.getxOffset() + "," + currentPixel.getyOffset() + "," + filteredPixelValue);
+//        }
         return filteredPixelValue;
     }
 
