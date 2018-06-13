@@ -13,22 +13,12 @@ import java.util.List;
 public class ImgApplication {
     public static void main(String[] args) throws Exception {
         Request request = new Request();
-        request.setStandardDeviation(4);
+        request.setStandardDeviation(1);
         request.setFilePath("./img/1_250_PC.tif");
 
         Lunar.radius = 30;
 
         Processor processor = new Processor();
         processor.processCorona(request);
-    }
-
-    public static void testAngles(){
-        Pixel pixel = new Pixel();
-        pixel.setxOffset(45);
-        pixel.setyOffset(45);
-        pixel.setQuadrant(1);
-        CoordinateUtil.updateDegrees(pixel);
-        System.out.println(pixel.getRadius());
-        System.out.println(pixel.getAngle());
     }
 }

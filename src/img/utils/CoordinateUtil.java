@@ -139,23 +139,23 @@ public class CoordinateUtil {
         }
 
         if (x == 0){
-            return (y < 0) ? DegreeConstants.RADIANS_270 : DegreeConstants.RADIANS_90;
+            return (y < 0) ? DegreeConstants.DEGREES_270 : DegreeConstants.DEGREES_90;
         }
 
         if (y == 0){
-            return (x < 0) ? DegreeConstants.RADIANS_180 : DegreeConstants.RADIANS_0;
+            return (x < 0) ? DegreeConstants.DEGREES_180 : DegreeConstants.DEGREES_0;
         }
 
-        double angle = Math.atan(Math.abs(y) / Math.abs(x));
+        double angle = Math.toDegrees(Math.atan(Math.abs(y) / Math.abs(x)));
 
         switch (q){
             case 1: return angle;
 
-            case 2: return DegreeConstants.RADIANS_90 + angle;
+            case 2: return DegreeConstants.DEGREES_180 - angle;
 
-            case 3: return DegreeConstants.RADIANS_180 + angle;
+            case 3: return DegreeConstants.DEGREES_270 - angle;
 
-            case 4: return DegreeConstants.RADIANS_270 + angle;
+            case 4: return DegreeConstants.DEGREES_270 + angle;
         }
 
         System.out.println("Default .. Shouldn't see this line at all");
@@ -163,8 +163,9 @@ public class CoordinateUtil {
     }
 
     public static void setAngleAndRoundedAngle(Pixel pixel, double degrees){
-        pixel.setAngle(degrees);
-        pixel.setRoundedAngle(round(pixel.getAngle(), 2));
+        System.out.println(pixel.getxOffset()+","+pixel.getyOffset()+","+degrees);
+        pixel.setRoundedAngle(round(pixel.getAngle(), 3));
+        pixel.setAngle(pixel.getRoundedAngle());
     }
 
     public static double angleAddition(double a, double b){

@@ -99,6 +99,14 @@ public class Processor {
         double radiusRangeLower = (currentPixel.getRadius()) - (2 * this.standardDeviation);
         double radiusRangeUpper = (currentPixel.getRadius()) + (2 * this.standardDeviation);
 
+        if(radiusRangeLower < Lunar.radius){
+            radiusRangeLower = Lunar.radius + 0.1;
+        }
+
+        if(radiusRangeUpper < Lunar.radius){
+            radiusRangeUpper = Lunar.radius + 0.1;
+        }
+
         double lowerAngleRange = (currentPixel.getAngle() - ((2 * this.standardDeviation) / currentPixel.getRadius()));
         double upperAngleRange = (currentPixel.getAngle() + ((2 * this.standardDeviation) / currentPixel.getRadius()));
 
@@ -114,19 +122,20 @@ public class Processor {
             // When lowerAngleRange is out of range with the angles, adjust the angle value to get the offset of the angle
             // from the max angle range which is -3.14. After -3.14, it is considered 0.01 and not -3.15
             // So, start from offset and find all the angles until 0.01. Then, reset the lowerAngleRange to -3.14 to continue with the normal process.
-            if(upperAngleRange > DegreeConstants.RADIANS_360){
-                for(double i  = upperAngleRange; i > DegreeConstants.RADIANS_360; i = i - 0.01) {
-                    double adjustedAngle = CoordinateUtil.round((i - DegreeConstants.RADIANS_360), 2);
+            if(upperAngleRange > DegreeConstants.DEGREES_360){
+                for(double i  = upperAngleRange; i > DegreeConstants.DEGREES_360; i = i - 0.01) {
+                    double adjustedAngle = CoordinateUtil.round((i - DegreeConstants.DEGREES_360), 3);
                     n_pixel = anglesMap.getValue().get(adjustedAngle);
                     if (n_pixel == null){
                         continue;
                     }
+
                     System.out.println(adjustedAngle);
                     double kernelValue = FilterUtil.calculateKernel(n_pixel, currentPixel, this.standardDeviation);
                     sumA += (n_pixel.getPixelValue() * kernelValue);
                     sumB += kernelValue;
                 }
-                upperAngleRange = DegreeConstants.RADIANS_360;
+                upperAngleRange = DegreeConstants.DEGREES_360;
 
                 /*double diff = CoordinateUtil.round((-3.14 + Math.abs(lowerAngleRange)), 2);
                 for(double i = diff; i > 0.01; i = i - 0.01){
@@ -146,9 +155,9 @@ public class Processor {
 
             for (Map.Entry<Double, Pixel> angleMapEntry : angleSubMap.entrySet()) {
 //                System.out.println(currentPixel.getxOffset()+"\t"+currentPixel.getyOffset()+"\t"+angleMapEntry.getValue().getxOffset()+"\t"+angleMapEntry.getValue().getyOffset()+"\t");
-                /*if (angleMapEntry.getValue().getRadius() <= Lunar.radius){
-                    continue;
-                }*/
+                if (angleMapEntry.getValue().getRadius() <= Lunar.radius){
+                    return 0;
+                }
 
                 double kernelValue = FilterUtil.calculateKernel(angleMapEntry.getValue(), currentPixel, this.standardDeviation);
                 sumA += (angleMapEntry.getValue().getPixelValue() * kernelValue);
