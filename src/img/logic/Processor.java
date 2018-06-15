@@ -1,6 +1,7 @@
 package img.logic;
 
 import img.ImageHelper;
+import img.common.DegreeConstants;
 import img.dto.Image;
 import img.dto.NeighbourPixel;
 import img.dto.Pixel;
@@ -128,6 +129,19 @@ public class Processor {
                     sumB += kernelValue;
                 }
                 lowerAngleRange = 0;
+            }
+
+            if (upperAngleRange > 360){
+                angleSubMap = angleMap.getValue().subMap(DegreeConstants.RADIANS_360, upperAngleRange);
+                for (Map.Entry<Double, Pixel> angleMapEntry : angleSubMap.entrySet()) {
+//                System.out.println(currentPixel.getxOffset()+"\t"+currentPixel.getyOffset()
+// +"\t"+angleMapEntry.getValue().getxOffset()+"\t"+angleMapEntry.getValue().getyOffset()+"\t");
+                    double kernelValue = FilterUtil.calculateKernel(angleMapEntry.getValue(), currentPixel,
+                        this.standardDeviation);
+                    sumA += (angleMapEntry.getValue().getPixelValue() * kernelValue);
+                    sumB += kernelValue;
+                }
+                upperAngleRange = DegreeConstants.RADIANS_360;
             }
 
 //            System.out.println(lowerAngleRange+","+upperAngleRange);

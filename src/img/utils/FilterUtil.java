@@ -19,10 +19,11 @@ public class FilterUtil {
             b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngle(), neighbourPixel.getAngle()), 2);
 //            b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngleCooefficient(), neighbourPixel.getAngleCooefficient()), 2);
         }*/
-        b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngle(), neighbourPixel.getAngle()), 2);
+        b = Math.pow(pixel.getRadius() * (pixel.getAngle() - neighbourPixel
+            .getAngle()), 2);
 
         double numerator =  a + b;
-        double exp = numerator / 2 * Math.pow(sd, 2);
+        double exp = numerator / (2 * Math.pow(sd, 2));
 
         return Math.exp( (-1) * exp);
      }
