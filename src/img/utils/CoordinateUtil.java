@@ -119,15 +119,6 @@ public class CoordinateUtil {
             }
         }
 
-        /*int signFactor = 1;
-        if (x == 0 || y == 0){
-            pixel.setAngleCooefficient(0);
-            degrees =  Math.atan(0);
-        } else if((y / x) < 0) {
-            pixel.setAngleCooefficient(y/x);
-            signFactor = -1;
-        }*/
-
         switch (q){
                 case 1: degrees =  Math.atan(Math.abs(y) / Math.abs(x));
                         break;

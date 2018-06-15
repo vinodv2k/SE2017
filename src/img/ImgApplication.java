@@ -12,7 +12,7 @@ import java.util.List;
 public class ImgApplication {
     public static void main(String[] args) throws Exception {
         Request request = new Request();
-        request.setStandardDeviation(64);
+        request.setStandardDeviation(2);
         request.setFilePath("./img/1_250_PC.tif");
 
         SolarCenter.solarCenterX = 66;
