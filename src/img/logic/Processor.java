@@ -130,7 +130,7 @@ public class Processor {
                 lowerAngleRange = 0;
             }
 
-            System.out.println(lowerAngleRange+","+upperAngleRange);
+//            System.out.println(lowerAngleRange+","+upperAngleRange);
             angleSubMap = angleMap.getValue().subMap(lowerAngleRange, upperAngleRange);
             for (Map.Entry<Double, Pixel> angleMapEntry : angleSubMap.entrySet()) {
 //                System.out.println(currentPixel.getxOffset()+"\t"+currentPixel.getyOffset()
