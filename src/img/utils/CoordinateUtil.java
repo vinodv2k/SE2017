@@ -74,9 +74,9 @@ public class CoordinateUtil {
 //        System.out.println("Radius: " + pixel.getRadius());
     }
 
-    private static double round(double value, int places) {
+    public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
-        if (Double.isNaN(value)){
+        if (Double.isNaN(value) || Double.isInfinite(value)){
             return 0;
         }
         BigDecimal bd = new BigDecimal(value);

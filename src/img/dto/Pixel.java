@@ -16,6 +16,42 @@ public class Pixel {
     private int filteredValue;
     private int normalizedValue;
     private int processedValue;
+    private double neighbourRadiusLowerLevel;
+    private double neighbourRadiusUpperLevel;
+    private double neighbourAngleLowerLevel;
+    private double neighbourAngleUpperLevel;
+
+    public double getNeighbourRadiusLowerLevel() {
+        return neighbourRadiusLowerLevel;
+    }
+
+    public void setNeighbourRadiusLowerLevel(double neighbourRadiusLowerLevel) {
+        this.neighbourRadiusLowerLevel = neighbourRadiusLowerLevel;
+    }
+
+    public double getNeighbourRadiusUpperLevel() {
+        return neighbourRadiusUpperLevel;
+    }
+
+    public void setNeighbourRadiusUpperLevel(double neighbourRadiusUpperLevel) {
+        this.neighbourRadiusUpperLevel = neighbourRadiusUpperLevel;
+    }
+
+    public double getNeighbourAngleLowerLevel() {
+        return neighbourAngleLowerLevel;
+    }
+
+    public void setNeighbourAngleLowerLevel(double neighbourAngleLowerLevel) {
+        this.neighbourAngleLowerLevel = neighbourAngleLowerLevel;
+    }
+
+    public double getNeighbourAngleUpperLevel() {
+        return neighbourAngleUpperLevel;
+    }
+
+    public void setNeighbourAngleUpperLevel(double neighbourAngleUpperLevel) {
+        this.neighbourAngleUpperLevel = neighbourAngleUpperLevel;
+    }
 
     public int getProcessedValue() {
         return processedValue;

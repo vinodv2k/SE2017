@@ -25,7 +25,7 @@ public class FilterUtil {
         double numerator =  a + b;
         double exp = numerator / (2 * Math.pow(sd, 2));
 
-        return Math.exp( (-1) * exp);
+        return Math.pow(Math.E, ((-1) * exp));
      }
 
     public static List<List<Integer>> normalize(List<List<Integer>> filteredPixelValues) {
