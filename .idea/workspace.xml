@@ -2,20 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b8813f5-07b3-46bc-be50-1892037c7f6d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/1_250_PC.tif_2.0_30.tiff" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/1_250_PC.tif_1.0.tiff" afterPath="$PROJECT_DIR$/1_250_PC.tif_1.0.tiff" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/1_250_PC.tif_2.0.tiff" afterPath="$PROJECT_DIR$/1_250_PC.tif_2.0.tiff" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/1_250_PC.tif_4.0.tiff" afterPath="$PROJECT_DIR$/1_250_PC.tif_4.0.tiff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SE2017/img/dto/Pixel.class" afterPath="$PROJECT_DIR$/out/production/SE2017/img/dto/Pixel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/1_250_PC.tif_8.0.tiff" afterPath="$PROJECT_DIR$/1_250_PC.tif_8.0.tiff" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SE2017/img/ImgApplication.class" afterPath="$PROJECT_DIR$/out/production/SE2017/img/ImgApplication.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SE2017/img/logic/Processor.class" afterPath="$PROJECT_DIR$/out/production/SE2017/img/logic/Processor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SE2017/img/utils/CoordinateUtil.class" afterPath="$PROJECT_DIR$/out/production/SE2017/img/utils/CoordinateUtil.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/img/ImgApplication.java" afterPath="$PROJECT_DIR$/src/img/ImgApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/img/common/DegreeConstants.java" afterPath="$PROJECT_DIR$/src/img/common/DegreeConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/img/dto/Pixel.java" afterPath="$PROJECT_DIR$/src/img/dto/Pixel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/img/logic/Processor.java" afterPath="$PROJECT_DIR$/src/img/logic/Processor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/img/utils/CoordinateUtil.java" afterPath="$PROJECT_DIR$/src/img/utils/CoordinateUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/img/utils/FilterUtil.java" afterPath="$PROJECT_DIR$/src/img/utils/FilterUtil.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,29 +22,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ImgApplication.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/img/ImgApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Processor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/img/logic/Processor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="24" column="35" lean-forward="false" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
+            <state relative-caret-position="599">
+              <caret line="160" column="17" lean-forward="true" selection-start-line="160" selection-start-column="17" selection-end-line="160" selection-end-column="17" />
               <folding>
-                <marker date="1529340428869" expanded="true" signature="9372:9524" ph="{...}" />
+                <marker date="1529437927448" expanded="true" signature="9185:9337" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FilterUtil.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FilterUtil.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/img/utils/FilterUtil.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
@@ -97,9 +82,9 @@
         <option value="$PROJECT_DIR$/src/img/dto/Pixel.java" />
         <option value="$PROJECT_DIR$/src/img/utils/CoordinateUtil.java" />
         <option value="$PROJECT_DIR$/src/img/common/DegreeConstants.java" />
-        <option value="$PROJECT_DIR$/src/img/logic/Processor.java" />
         <option value="$PROJECT_DIR$/src/img/utils/FilterUtil.java" />
         <option value="$PROJECT_DIR$/src/img/ImgApplication.java" />
+        <option value="$PROJECT_DIR$/src/img/logic/Processor.java" />
       </list>
     </option>
   </component>
@@ -321,12 +306,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1524001730622</updated>
-      <workItem from="1529323134819" duration="8279000" />
+      <workItem from="1529323134819" duration="8607000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12970000" />
+    <option name="totallyTimeSpent" value="13298000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1333" extended-state="6" />
@@ -501,7 +486,7 @@
         <state relative-caret-position="375">
           <caret line="38" column="42" lean-forward="false" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="42" />
           <folding>
-            <marker date="1529340428869" expanded="true" signature="9372:9524" ph="{...}" />
+            <marker date="1529437927448" expanded="true" signature="9185:9337" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -537,7 +522,7 @@
         <state relative-caret-position="975">
           <caret line="78" column="48" lean-forward="true" selection-start-line="78" selection-start-column="48" selection-end-line="78" selection-end-column="48" />
           <folding>
-            <marker date="1529340428869" expanded="true" signature="9372:9524" ph="{...}" />
+            <marker date="1529437927448" expanded="true" signature="9185:9337" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -729,7 +714,7 @@
         <state relative-caret-position="221">
           <caret line="121" column="23" lean-forward="false" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="23" />
           <folding>
-            <marker date="1529340428869" expanded="true" signature="9372:9524" ph="{...}" />
+            <marker date="1529437927448" expanded="true" signature="9185:9337" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -747,7 +732,7 @@
         <state relative-caret-position="1140">
           <caret line="89" column="51" lean-forward="true" selection-start-line="89" selection-start-column="51" selection-end-line="89" selection-end-column="51" />
           <folding>
-            <marker date="1529340428869" expanded="true" signature="9372:9524" ph="{...}" />
+            <marker date="1529437927448" expanded="true" signature="9185:9337" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -796,16 +781,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/logic/Processor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="24" column="35" lean-forward="false" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
-          <folding>
-            <marker date="1529340428869" expanded="true" signature="9372:9524" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/img/common/DegreeConstants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -835,18 +810,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/utils/FilterUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/img/ImgApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="27" column="44" lean-forward="false" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
+        <state relative-caret-position="165">
+          <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/img/ImgApplication.java">
+    <entry file="file://$PROJECT_DIR$/src/img/logic/Processor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+        <state relative-caret-position="599">
+          <caret line="160" column="17" lean-forward="true" selection-start-line="160" selection-start-column="17" selection-end-line="160" selection-end-column="17" />
+          <folding>
+            <marker date="1529437927448" expanded="true" signature="9185:9337" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/img/utils/FilterUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="27" column="44" lean-forward="false" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
           <folding />
         </state>
       </provider>

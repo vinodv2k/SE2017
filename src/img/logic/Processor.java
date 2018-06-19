@@ -156,10 +156,8 @@ public class Processor {
 //            System.out.println(lowerAngleRange+","+upperAngleRange);
             angleSubMap = angleMap.getValue().subMap(lowerAngleRange, upperAngleRange);
             for (Map.Entry<Double, Pixel> angleMapEntry : angleSubMap.entrySet()) {
-//                System.out.println(currentPixel.getxOffset()+"\t"+currentPixel.getyOffset()
-// +"\t"+angleMapEntry.getValue().getxOffset()+"\t"+angleMapEntry.getValue().getyOffset()+"\t");
                 if (angleMapEntry.getValue().getRadius() <= 30){
-                    return 0;
+                    return 65536;
                 }
                 if(currentPixel.getAngle() == DegreeConstants.RADIANS_45){
                     System.out.println(angleSubMap.size());
