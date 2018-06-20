@@ -86,21 +86,21 @@ public class CoordinateUtil {
 
 
     public static void updateDegrees(Pixel pixel){
-        float x = pixel.getxOffset();
-        float y = pixel.getyOffset();
+        double x = pixel.getxOffset();
+        double y = pixel.getyOffset();
         int q = pixel.getQuadrant();
         double radians = 0;
 
-        double degree = Math.atan(Math.abs(y) / Math.abs(x));
+        double degree = Math.atan2(y,x);
 
         switch (q){
             case 1: radians = degree;
                 break;
-            case 2: radians = DegreeConstants.RADIANS_90 + degree;
+            case 2: radians = degree;
                 break;
-            case 3: radians =  DegreeConstants.RADIANS_180 + degree;
+            case 3: radians =  degree + DegreeConstants.RADIANS_360;
                 break;
-            case 4: radians =  DegreeConstants.RADIANS_270 + degree;
+            case 4: radians =  degree + DegreeConstants.RADIANS_360;
                 break;
         }
 
@@ -136,7 +136,7 @@ public class CoordinateUtil {
 
     private static void setAngleAndRoundedAngle(Pixel pixel, double degrees){
         pixel.setAngle(degrees);
-        pixel.setRoundedAngle(round(pixel.getAngle(), 5));
+        pixel.setRoundedAngle(round(pixel.getAngle(), 2));
     }
 
     public static double angleAddition(double a, double b){

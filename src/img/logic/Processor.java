@@ -125,7 +125,7 @@ public class Processor {
             Pixel n_pixel = null;
             if(lowerAngleRange < DegreeConstants.RADIANS_0){
                 for (double i = lowerAngleRange; i <= DegreeConstants.RADIANS_0; i = i + 0.01) {
-
+//                    System.out.println(i);
                     double adjustedAngle = CoordinateUtil.round(DegreeConstants.RADIANS_0 + i, 2);
                     n_pixel = angleMap.getValue().get(adjustedAngle);
                     if (n_pixel == null){
@@ -140,25 +140,26 @@ public class Processor {
             }
 
             if (upperAngleRange > 360){
-                angleSubMap = angleMap.getValue().subMap(DegreeConstants.RADIANS_360, upperAngleRange);
-                for (Map.Entry<Double, Pixel> angleMapEntry : angleSubMap.entrySet()) {
-//                System.out.println(currentPixel.getxOffset()+"\t"+currentPixel.getyOffset()
-// +"\t"+angleMapEntry.getValue().getxOffset()+"\t"+angleMapEntry.getValue().getyOffset()+"\t");
-                    System.out.println("hello");
-                    double kernelValue = FilterUtil.calculateKernel(angleMapEntry.getValue(), currentPixel,
-                        this.standardDeviation);
-                    sumA += (angleMapEntry.getValue().getPixelValue() * kernelValue);
+                for (double i = upperAngleRange; i >= DegreeConstants.RADIANS_360; i = i - 0.01) {
+
+                    double adjustedAngle = CoordinateUtil.round(DegreeConstants.RADIANS_360 - i, 2);
+                    n_pixel = angleMap.getValue().get(adjustedAngle);
+                    if (n_pixel == null){
+                        continue;
+                    }
+//                    System.out.println(adjustedAngle);
+                    double kernelValue = FilterUtil.calculateKernel(n_pixel, currentPixel, this.standardDeviation);
+                    sumA += (n_pixel.getPixelValue() * kernelValue);
                     sumB += kernelValue;
                 }
                 upperAngleRange = DegreeConstants.RADIANS_360;
             }
 
-//            System.out.println(lowerAngleRange+","+upperAngleRange);
             angleSubMap = angleMap.getValue().subMap(lowerAngleRange, upperAngleRange);
             for (Map.Entry<Double, Pixel> angleMapEntry : angleSubMap.entrySet()) {
-                if (angleMapEntry.getValue().getRadius() <= 30){
-                    return 65536;
-                }
+/*                if (angleMapEntry.getValue().getRadius() <= 30){
+                    return 0;
+                }*/
                 if(currentPixel.getAngle() == DegreeConstants.RADIANS_45){
                     System.out.println(angleSubMap.size());
                 }
