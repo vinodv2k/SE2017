@@ -25,56 +25,24 @@ public class Processor {
         CoordinateUtil.updateSolarCenter(image);
         this.standardDeviation = request.getStandardDeviation();
 
-        TreeMap<Double, List<Double>> radAngle = new TreeMap<>();
-        TreeMap<Double, TreeMap<Double, Pixel>> radAnglePixelMap = new TreeMap<>();
-
-        TreeMap<Double, Pixel> anglePixelMap = null;
         Pixel currentPixel = null;
-        List<Double> angles = null;
+
         this.imagePixels = new ArrayList<>();
         for (int i = 0; i < this.imgInfo.size(); i++) {
             for (int j = 0; j < this.imgInfo.get(i).size(); j++) {
                 currentPixel = this.imgInfo.get(i).get(j);
                 CoordinateUtil.updatePolarCoordinates(currentPixel);
-                updateNeighbourSearchRadius(currentPixel);
-                updateNeighbourSearchAngle(currentPixel);
                 this.imagePixels.add(currentPixel);
-
-                if (radAngle.get(currentPixel.getRoundedRadius()) != null && radAngle.get(currentPixel
-                    .getRoundedRadius()).size() > 0) {
-                    radAngle.get(currentPixel.getRoundedRadius()).add(currentPixel.getRoundedAngle());
-                } else {
-                    angles = new ArrayList<>();
-                    angles.add(currentPixel.getRoundedAngle());
-                    radAngle.put(currentPixel.getRoundedRadius(), angles);
-                }
-
-                if (radAnglePixelMap.get(currentPixel.getRoundedRadius()) == null || radAnglePixelMap.get
-                    (currentPixel.getRoundedRadius()).size() == 0) {
-                    // add new treemap
-                    anglePixelMap = new TreeMap<>();
-                    anglePixelMap.put(currentPixel.getRoundedAngle(), currentPixel);
-                    radAnglePixelMap.put(currentPixel.getRoundedRadius(), anglePixelMap);
-                } else {
-                    radAnglePixelMap.get(currentPixel.getRoundedRadius()).put(currentPixel.getRoundedAngle
-                        (), currentPixel);
-                }
             }
         }
 
-        List<List<Integer>> filteredPixelValues = this.imgInfo.stream().map(colPixels -> {
-            return colPixels.stream().map(pixel -> {
-//                 System.out.println("Working on ("+pixel.getX()+", "+pixel.getY()+")");
-                int filteredValue = applyAchf(pixel, radAnglePixelMap);
-//                return filteredValue < 0 ? 0 : filteredValue;
-                return filteredValue;
-            }).collect(Collectors.toList());
-        }).collect(Collectors.toList());
+        List<List<Integer>> filteredPixelValues = this.imgInfo.stream().map(colPixels ->
+            colPixels.stream()
+                .map(pixel -> applyAchf(pixel))
+                .collect(Collectors.toList()))
+            .collect(Collectors.toList());
 
-//        filteredValue = findNeighbouringPixelsAndApplyFilter(this.imgInfo.get(20).get(20));
-//        pixelValues.add(filteredValue < 0 ? 0 : filteredValue);
-//        pixelValues.add(filteredValue);
-
+//        printFilteredValues(filteredPixelValues);
         int[][] normalizedIntArray = CoordinateUtil.convertBackToIntArray(FilterUtil.normalize
             (filteredPixelValues));
 //        printAllValues(normalizedIntArray);
@@ -93,123 +61,82 @@ public class Processor {
         }
     }
 
-    private int applyAchf(Pixel currentPixel, TreeMap<Double, TreeMap<Double, Pixel>>
-        radAnglePixelMap) {
-//        this.standardDeviation = 1;
-//        CoordinateUtil.updatePolarCoordinates(currentPixel);
-/*        if (currentPixel.getRoundedRadius() == 22.62){
+    private void printFilteredValues(List<List<Integer>> filteredPixelValues){
+        filteredPixelValues.stream().forEach(row -> {
+            row.stream().forEach(col -> {
+                System.out.printf(" " + col.toString());
+            });
+            System.out.println();
+        });
+    }
+
+    private int applyAchf(Pixel currentPixel) {
+/*        if (currentPixel.getRadius() <= 30){
             return 0;
         }*/
+        double doubleSd = 2 * this.standardDeviation;
+        double radiusRangeLower = (currentPixel.getRadius()) - 1;
+        double radiusRangeUpper = (currentPixel.getRadius()) + 1;
 
-        if (currentPixel.getRoundedRadius() <= 30){
-            return 0;
-        }
-
-        double radiusRangeLower = (currentPixel.getRadius()) - (2 * this.standardDeviation);
-        double radiusRangeUpper = (currentPixel.getRadius()) + (2 * this.standardDeviation);
-
-        double lowerAngleRange = (currentPixel.getAngle() - ((2 * this.standardDeviation) / currentPixel
-            .getRadius()));
-        double upperAngleRange = (currentPixel.getAngle() + ((2 * this.standardDeviation) / currentPixel
-            .getRadius()));
+        double lowerAngleRange = currentPixel.getAngle() - (doubleSd / currentPixel
+            .getRadius());
+        double upperAngleRange = currentPixel.getAngle() + (doubleSd / currentPixel
+            .getRadius());
 
         double sumA = 0;
         double sumB = 0;
 
-        SortedMap<Double, TreeMap<Double, Pixel>> radiusRangeMap = radAnglePixelMap.subMap(radiusRangeLower,
-            radiusRangeUpper);
-        for (Map.Entry<Double, TreeMap<Double, Pixel>> angleMap : radiusRangeMap.entrySet()) {
+        /*System.out.println(lowerAngleRange+","+upperAngleRange+" for "+currentPixel.getxOffset()+"," +
+            ""+currentPixel.getyOffset());*/
 
-            SortedMap<Double, Pixel> angleSubMap = null;
-
-            Pixel n_pixel = null;
-            if(lowerAngleRange < DegreeConstants.RADIANS_0){
-                for (double i = lowerAngleRange; i <= DegreeConstants.RADIANS_0; i = i + 0.01) {
-//                    System.out.println(i);
-                    double adjustedAngle = CoordinateUtil.round(DegreeConstants.RADIANS_0 + i, 2);
-                    n_pixel = angleMap.getValue().get(adjustedAngle);
-                    if (n_pixel == null){
-                        continue;
-                    }
-//                    System.out.println(adjustedAngle);
-                    double kernelValue = FilterUtil.calculateKernel(n_pixel, currentPixel, this.standardDeviation);
-                    sumA += (n_pixel.getPixelValue() * kernelValue);
-                    sumB += kernelValue;
-                }
-                lowerAngleRange = DegreeConstants.RADIANS_0;
-            }
-
-            if (upperAngleRange > 360){
-                for (double i = upperAngleRange; i >= DegreeConstants.RADIANS_360; i = i - 0.01) {
-
-                    double adjustedAngle = CoordinateUtil.round(DegreeConstants.RADIANS_360 - i, 2);
-                    n_pixel = angleMap.getValue().get(adjustedAngle);
-                    if (n_pixel == null){
-                        continue;
-                    }
-//                    System.out.println(adjustedAngle);
-                    double kernelValue = FilterUtil.calculateKernel(n_pixel, currentPixel, this.standardDeviation);
-                    sumA += (n_pixel.getPixelValue() * kernelValue);
-                    sumB += kernelValue;
-                }
-                upperAngleRange = DegreeConstants.RADIANS_360;
-            }
-
-            angleSubMap = angleMap.getValue().subMap(lowerAngleRange, upperAngleRange);
-            for (Map.Entry<Double, Pixel> angleMapEntry : angleSubMap.entrySet()) {
-/*                if (angleMapEntry.getValue().getRadius() <= 30){
-                    return 0;
-                }*/
-                if(currentPixel.getAngle() == DegreeConstants.RADIANS_45){
-                    System.out.println(angleSubMap.size());
-                }
-                double kernelValue = FilterUtil.calculateKernel(angleMapEntry.getValue(), currentPixel,
-                    this.standardDeviation);
-                sumA += (angleMapEntry.getValue().getPixelValue() * kernelValue);
+        if (lowerAngleRange < DegreeConstants.RADIANS_0){
+            double adjustmentOffset = DegreeConstants.RADIANS_360 + lowerAngleRange;
+            List<Pixel> neighbourPixelsForAxis = this.imagePixels.stream()
+                .filter(pix -> pix.getRadius() > radiusRangeLower && pix.getRadius() < radiusRangeUpper)
+                .filter( pix ->
+                pix.getAngle() > adjustmentOffset && pix.getAngle() < DegreeConstants.RADIANS_360)
+                .collect(Collectors.toList());
+            for (Pixel pix: neighbourPixelsForAxis) {
+                double kernelValue = FilterUtil.calculateKernel(pix, currentPixel, this.standardDeviation);
+                sumA += (pix.getPixelValue() * kernelValue);
                 sumB += kernelValue;
             }
+            lowerAngleRange = DegreeConstants.RADIANS_0;
+        }
+
+        if (upperAngleRange > DegreeConstants.RADIANS_360){
+            double adjustmentOffset = upperAngleRange - DegreeConstants.RADIANS_360;
+            List<Pixel> neighbourPixelsForAxis = this.imagePixels.stream()
+                .filter(pix -> pix.getRadius() > radiusRangeLower && pix.getRadius() < radiusRangeUpper)
+                .filter( pix -> pix.getAngle() < adjustmentOffset && pix.getAngle() > DegreeConstants.RADIANS_0)
+                .collect(Collectors.toList());
+            for (Pixel nPix: neighbourPixelsForAxis) {
+                double kernelValue = FilterUtil.calculateKernel(nPix, currentPixel, this.standardDeviation);
+                sumA += (nPix.getPixelValue() * kernelValue);
+                sumB += kernelValue;
+            }
+            upperAngleRange = DegreeConstants.RADIANS_360;
+        }
+
+        double finalUpperAngleRange = upperAngleRange;
+        double finalLowerAngleRange = lowerAngleRange;
+        List<Pixel> neighbourPixelsForAxis = this.imagePixels.stream()
+            .filter(pix -> pix.getRadius() > radiusRangeLower && pix.getRadius() < radiusRangeUpper)
+            .filter( pix ->
+                pix.getAngle() < finalUpperAngleRange && pix.getAngle() > finalLowerAngleRange
+            ).collect(Collectors.toList());
+
+        for (Pixel pix: neighbourPixelsForAxis) {
+            if(pix.getRadius() < 30){
+                return 0;
+            }
+            double kernelValue = FilterUtil.calculateKernel(pix, currentPixel, this.standardDeviation);
+            sumA += (pix.getPixelValue() * kernelValue);
+            sumB += kernelValue;
         }
 
         int subtract = sumB == 0 ? 0 : Long.valueOf(Math.round(sumA / sumB)).intValue();
         int filteredPixelValue = currentPixel.getPixelValue() - subtract;
         return filteredPixelValue;
-    }
-
-
-    private void temp(){
-
-        this.imagePixels.stream().forEach(pixel -> {
-            List<Pixel> neighbouringPixels = this.imagePixels.stream().filter(pixels -> {
-                return pixel.getRadius() >= pixels.getNeighbourRadiusLowerLevel() && pixel.getRadius() <=
-                    pixels.getNeighbourRadiusUpperLevel();
-            }).filter(np -> {
-                return pixel.getAngle() >= np.getNeighbourAngleLowerLevel() && pixel.getAngle() <= np
-                    .getNeighbourAngleUpperLevel();
-            }).collect(Collectors.toList());
-        });
-
-    }
-
-
-    private void updateNeighbourSearchRadius(Pixel pixel){
-        pixel.setRadius(pixel.getRadius() - (2 * this.standardDeviation));
-        pixel.setRadius(pixel.getRadius() + (2 * this.standardDeviation));
-    }
-    
-    private void updateNeighbourSearchAngle(Pixel pixel){
-        pixel.setNeighbourAngleLowerLevel(pixel.getAngle() - ((2 * this.standardDeviation) / pixel
-            .getRadius()));
-        pixel.setNeighbourAngleUpperLevel(pixel.getAngle() + ((2 * this.standardDeviation) / pixel
-            .getRadius()));
-
-    }
-
-    private int getPixelValueOf(int x, int y) {
-        try {
-            return this.imgInfo.get(x).get(y).getPixelValue();
-        } catch (Exception e) {
-            System.out.println(e.getStackTrace());
-            return 0;
-        }
     }
 }

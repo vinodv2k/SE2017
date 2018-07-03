@@ -1,5 +1,6 @@
 package img.utils;
 
+import img.common.DegreeConstants;
 import img.common.SolarCenter;
 import img.dto.NeighbourPixel;
 import img.dto.Pixel;
@@ -9,23 +10,16 @@ import java.util.List;
 
 public class FilterUtil {
     public static double calculateKernel(Pixel neighbourPixel, Pixel pixel, double sd){
-//        double numerator = Math.pow((pixel.getRadius()-neighbourPixel.getRadius()), 2) + Math.pow(pixel.getRadius() * (Math.abs(pixel.getAngleCooefficient()) - Math.abs(neighbourPixel.getAngleCooefficient())), 2);
         double a = Math.pow((pixel.getRadius() - neighbourPixel.getRadius()), 2);
-        double b = 0;
-        /*if (pixel.getQuadrant() == 2 || pixel.getQuadrant() == 4){
-//            b = Math.pow(pixel.getRadius() * (neighbourPixel.getAngleCooefficient()-pixel.getAngleCooefficient()),2);
-            b = 0;
-        } else {
-            b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngle(), neighbourPixel.getAngle()), 2);
-//            b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngleCooefficient(), neighbourPixel.getAngleCooefficient()), 2);
-        }*/
-        b = Math.pow(pixel.getRadius() * (pixel.getAngle() - neighbourPixel
-            .getAngle()), 2);
+        double b = Math.pow(pixel.getRadius() * (Math.abs(pixel.getAngle()) - Math.abs(neighbourPixel
+            .getAngle())), 2);
 
         double numerator =  a + b;
         double exp = numerator / (2 * Math.pow(sd, 2));
 
-        return Math.pow(Math.E, ((-1) * exp));
+        if(exp > 0)
+            exp = (-1)*exp;
+        return Math.exp(exp);
      }
 
     public static List<List<Integer>> normalize(List<List<Integer>> filteredPixelValues) {

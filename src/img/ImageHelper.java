@@ -37,8 +37,6 @@ public class ImageHelper {
             pixel.setY(col);
             data[row][col] = pixels[i];
             columnPixels.add(pixel);
-
-//            System.out.println("("+row+","+col+") : " + data[row][col]);
             row++;
             if (row == blockSize) {
                 col++;
@@ -47,8 +45,6 @@ public class ImageHelper {
                 row = 0;
             }
         }
-        System.out.println(data);
-
         return pixelsArray;
     }
 
