@@ -121,11 +121,11 @@ public class CoordinateUtil {
 
         if (y == 0){
             if (x > 0) {
-                setAngleAndRoundedAngle(pixel, 0);
+                setAngleAndRoundedAngle(pixel, degree);
 //                System.out.println(x + "," + y);
                 return;
             } else {
-                setAngleAndRoundedAngle(pixel, DegreeConstants.RADIANS_180);
+                setAngleAndRoundedAngle(pixel, degree);
 //                System.out.println(x + "," + y);
                 return;
             }

@@ -16,6 +16,7 @@ public class Processor {
     private double standardDeviation;
     private List<List<Pixel>> imgInfo;
     private List<Pixel> imagePixels;
+    private double maxPossibleRadius;
 
     public void processCorona(Request request) {
         ImageHelper imageHelper = new ImageHelper();
@@ -25,16 +26,16 @@ public class Processor {
         CoordinateUtil.updateSolarCenter(image);
         this.standardDeviation = request.getStandardDeviation();
 
-        Pixel currentPixel = null;
-
         this.imagePixels = new ArrayList<>();
-        for (int i = 0; i < this.imgInfo.size(); i++) {
-            for (int j = 0; j < this.imgInfo.get(i).size(); j++) {
-                currentPixel = this.imgInfo.get(i).get(j);
-                CoordinateUtil.updatePolarCoordinates(currentPixel);
-                this.imagePixels.add(currentPixel);
-            }
-        }
+
+        this.imgInfo.stream().forEach(rowPixels -> {
+           rowPixels.stream().forEach(pixel->{
+               CoordinateUtil.updatePolarCoordinates(pixel);
+                this.imagePixels.add(pixel);
+           });
+        });
+
+        this.maxPossibleRadius = findMaxRadiusPossible();
 
         List<List<Integer>> filteredPixelValues = this.imgInfo.stream().map(colPixels ->
             colPixels.stream()
@@ -74,9 +75,14 @@ public class Processor {
 /*        if (currentPixel.getRadius() <= 30){
             return 0;
         }*/
+
         double doubleSd = 2 * this.standardDeviation;
-        double radiusRangeLower = (currentPixel.getRadius()) - 1;
-        double radiusRangeUpper = (currentPixel.getRadius()) + 1;
+        double radiusRangeLower = (currentPixel.getRadius()) - this.standardDeviation;
+        double radiusRangeUpper = (currentPixel.getRadius()) + this.standardDeviation;
+
+        if (radiusRangeUpper > this.maxPossibleRadius){
+            radiusRangeLower = this.maxPossibleRadius;
+        }
 
         double lowerAngleRange = currentPixel.getAngle() - (doubleSd / currentPixel
             .getRadius());
@@ -89,10 +95,11 @@ public class Processor {
         /*System.out.println(lowerAngleRange+","+upperAngleRange+" for "+currentPixel.getxOffset()+"," +
             ""+currentPixel.getyOffset());*/
 
+        final double finalRadiusRangeLower = radiusRangeLower;
         if (lowerAngleRange < DegreeConstants.RADIANS_0){
             double adjustmentOffset = DegreeConstants.RADIANS_360 + lowerAngleRange;
             List<Pixel> neighbourPixelsForAxis = this.imagePixels.stream()
-                .filter(pix -> pix.getRadius() > radiusRangeLower && pix.getRadius() < radiusRangeUpper)
+                .filter(pix -> pix.getRadius() > finalRadiusRangeLower && pix.getRadius() < radiusRangeUpper)
                 .filter( pix ->
                 pix.getAngle() > adjustmentOffset && pix.getAngle() < DegreeConstants.RADIANS_360)
                 .collect(Collectors.toList());
@@ -107,7 +114,7 @@ public class Processor {
         if (upperAngleRange > DegreeConstants.RADIANS_360){
             double adjustmentOffset = upperAngleRange - DegreeConstants.RADIANS_360;
             List<Pixel> neighbourPixelsForAxis = this.imagePixels.stream()
-                .filter(pix -> pix.getRadius() > radiusRangeLower && pix.getRadius() < radiusRangeUpper)
+                .filter(pix -> pix.getRadius() > finalRadiusRangeLower && pix.getRadius() < radiusRangeUpper)
                 .filter( pix -> pix.getAngle() < adjustmentOffset && pix.getAngle() > DegreeConstants.RADIANS_0)
                 .collect(Collectors.toList());
             for (Pixel nPix: neighbourPixelsForAxis) {
@@ -121,7 +128,7 @@ public class Processor {
         double finalUpperAngleRange = upperAngleRange;
         double finalLowerAngleRange = lowerAngleRange;
         List<Pixel> neighbourPixelsForAxis = this.imagePixels.stream()
-            .filter(pix -> pix.getRadius() > radiusRangeLower && pix.getRadius() < radiusRangeUpper)
+            .filter(pix -> pix.getRadius() > finalRadiusRangeLower && pix.getRadius() < radiusRangeUpper)
             .filter( pix ->
                 pix.getAngle() < finalUpperAngleRange && pix.getAngle() > finalLowerAngleRange
             ).collect(Collectors.toList());
@@ -138,5 +145,15 @@ public class Processor {
         int subtract = sumB == 0 ? 0 : Long.valueOf(Math.round(sumA / sumB)).intValue();
         int filteredPixelValue = currentPixel.getPixelValue() - subtract;
         return filteredPixelValue;
+    }
+
+    private double findMaxRadiusPossible(){
+        double maxValue = 0;
+        for (Pixel pixel: this.imagePixels) {
+            if(pixel.getRadius() > maxValue){
+                maxValue = pixel.getRadius();
+            }
+        }
+        return maxValue;
     }
 }
