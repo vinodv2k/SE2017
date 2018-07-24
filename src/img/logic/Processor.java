@@ -134,9 +134,9 @@ public class Processor {
             ).collect(Collectors.toList());
 
         for (Pixel pix: neighbourPixelsForAxis) {
-            if(pix.getRadius() < 30){
+            /*if(pix.getRadius() < 30){
                 return 0;
-            }
+            }*/
             double kernelValue = FilterUtil.calculateKernel(pix, currentPixel, this.standardDeviation);
             sumA += (pix.getPixelValue() * kernelValue);
             sumB += kernelValue;

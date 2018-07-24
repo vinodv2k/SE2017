@@ -7,6 +7,7 @@ import img.dto.Pixel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FilterUtil {
     public static double calculateKernel(Pixel neighbourPixel, Pixel pixel, double sd){
@@ -27,7 +28,10 @@ public class FilterUtil {
         int[] extremes = findMaxValue(filteredPixelValues);
         double minValue = extremes[0];
         double maxValue = extremes[1];
-
+        List<Integer> flattenedPixelValues = flattenPixelValues(filteredPixelValues);
+        double mean = findMean(flattenedPixelValues);
+        double variance = findVariance(flattenedPixelValues, mean);
+        double sd = Math.sqrt(variance);
         double range = maxValue - minValue;
 
         final int newMin = 0;
@@ -42,6 +46,7 @@ public class FilterUtil {
         for(int i = 0; i < filteredPixelValues.size(); i++){
             for(int j = 0; j < filteredPixelValues.get(i).size(); j++){
                 normalizedValue = Double.valueOf(newMax * ((filteredPixelValues.get(i).get(j).intValue() - minValue) / range)).intValue();
+//                normalizedValue = Double.valueOf((filteredPixelValues.get(i).get(j).intValue() - mean)/sd).intValue();
 //                normalizedValue = Double.valueOf((newMax / range) * (filteredPixelValues.get(i).get(j).intValue() - minValue)).intValue();
 //                normalizedValue = Double.valueOf(((filteredPixelValues.get(i).get(j).intValue() - minValue) * ((newMax-newMin)/(maxValue-minValue)))+newMin).intValue();
 /*                if ( i < SolarCenter.solarCenterX && j < SolarCenter.solarCenterY){
@@ -77,5 +82,25 @@ public class FilterUtil {
             }
         }
         return new int[]{minValue, maxValue};
+    }
+
+    private static double findMean(List<Integer> pixelValues){
+        int sum = 0;
+        for (int pv : pixelValues){
+            sum += pv;
+        }
+        return sum / pixelValues.size();
+    }
+
+    private static List<Integer> flattenPixelValues(List<List<Integer>> pixelValues){
+        return pixelValues.stream().flatMap(List::stream).collect(Collectors.toList());
+    }
+
+    private static double findVariance(List<Integer> flattenedPixelValues, double mean){
+        double temp = 0;
+        for (int pv : flattenedPixelValues){
+            temp += (pv - mean) * (pv - mean);
+        }
+        return temp / (flattenedPixelValues.size() - 1);
     }
 }
