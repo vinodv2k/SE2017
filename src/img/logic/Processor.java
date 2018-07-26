@@ -108,6 +108,9 @@ public class Processor {
 //            double radius = angleMap.getKey();
             SortedMap<Double, Pixel> angleSubMap = angleMap.getValue().subMap(lowerAngleRange, upperAngleRange);
             for (Map.Entry<Double, Pixel> angleMapEntry : angleSubMap.entrySet()) {
+                if (angleMapEntry.getValue().getRadius() < 30){
+                    return 0;
+                }
 //                System.out.println(currentPixel.getxOffset()+"\t"+currentPixel.getyOffset()+"\t"+angleMapEntry.getValue().getxOffset()+"\t"+angleMapEntry.getValue().getyOffset()+"\t");
                 double kernelValue = FilterUtil.calculateKernel(angleMapEntry.getValue(), currentPixel, this.standardDeviation);
                 sumA += (angleMapEntry.getValue().getPixelValue() * kernelValue);
