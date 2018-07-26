@@ -9,22 +9,13 @@ import java.util.List;
 
 public class FilterUtil {
     public static double calculateKernel(Pixel neighbourPixel, Pixel pixel, double sd){
-//        double numerator = Math.pow((pixel.getRadius()-neighbourPixel.getRadius()), 2) + Math.pow(pixel.getRadius() * (Math.abs(pixel.getAngleCooefficient()) - Math.abs(neighbourPixel.getAngleCooefficient())), 2);
-        double a = Math.pow((pixel.getRadius() - neighbourPixel.getRadius()), 4);
-        double b = 0;
-        /*if (pixel.getQuadrant() == 2 || pixel.getQuadrant() == 4){
-//            b = Math.pow(pixel.getRadius() * (neighbourPixel.getAngleCooefficient()-pixel.getAngleCooefficient()),2);
-            b = 0;
-        } else {
-            b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngle(), neighbourPixel.getAngle()), 2);
-//            b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngleCooefficient(), neighbourPixel.getAngleCooefficient()), 2);
-        }*/
-        b = Math.pow(pixel.getRadius() * (neighbourPixel.getAngle() - pixel.getAngle()), 2);
+
+        double a = Math.pow((pixel.getRadius() - neighbourPixel.getRadius()), 2);
+        double b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngleCooefficient(), neighbourPixel.getAngleCooefficient()), 2);
 
         double numerator =  a + b;
-        double exp = numerator / (2 * Math.pow(sd, 2));
-
-        return Math.exp( (-1) * exp);
+        double powerFactor = numerator / (2 * Math.pow(sd, 2));
+        return Math.exp( (-1) * powerFactor);
      }
 
     public static List<List<Integer>> normalize(List<List<Integer>> filteredPixelValues) {

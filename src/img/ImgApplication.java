@@ -15,9 +15,6 @@ public class ImgApplication {
         request.setStandardDeviation(8);
         request.setFilePath("./img/1_250_PC.tif");
 
-        SolarCenter.solarCenterX = 66;
-        SolarCenter.solarCenterY = 66;
-
         Processor processor = new Processor();
         processor.processCorona(request);
     }
