@@ -12,8 +12,8 @@ import java.util.List;
 public class ImgApplication {
     public static void main(String[] args) throws Exception {
         Request request = new Request();
-        request.setStandardDeviation(8);
-        request.setFilePath("./img/1_250_PC.tif");
+        request.setStandardDeviation(4);
+        request.setFilePath("./img/3_500_PC.tif");
 
         Processor processor = new Processor();
         processor.processCorona(request);

@@ -58,7 +58,8 @@ public class Processor {
         }
 
         List<List<Integer>> filteredPixelValues = this.imgInfo.stream().map(colPixels -> {
-             return colPixels.stream().map(pixel -> {
+             return colPixels.stream()
+                     .map(pixel -> {
 //                 System.out.println("Working on ("+pixel.getX()+", "+pixel.getY()+")");
                 int filteredValue = findNeighbouringPixels(pixel, radAnglePixelMap);
 //                return filteredValue < 0 ? 0 : filteredValue;
@@ -93,6 +94,9 @@ public class Processor {
 /*        if (currentPixel.getRoundedRadius() == 22.62){
             return 0;
         }*/
+if(currentPixel.getRadius() < 60){
+    return 0;
+}
 
         double radiusRangeLower = (currentPixel.getRadius()) - (2 * this.standardDeviation);
         double radiusRangeUpper = (currentPixel.getRadius()) + (2 * this.standardDeviation);
@@ -108,10 +112,6 @@ public class Processor {
 //            double radius = angleMap.getKey();
             SortedMap<Double, Pixel> angleSubMap = angleMap.getValue().subMap(lowerAngleRange, upperAngleRange);
             for (Map.Entry<Double, Pixel> angleMapEntry : angleSubMap.entrySet()) {
-                if (angleMapEntry.getValue().getRadius() < 30){
-                    return 0;
-                }
-//                System.out.println(currentPixel.getxOffset()+"\t"+currentPixel.getyOffset()+"\t"+angleMapEntry.getValue().getxOffset()+"\t"+angleMapEntry.getValue().getyOffset()+"\t");
                 double kernelValue = FilterUtil.calculateKernel(angleMapEntry.getValue(), currentPixel, this.standardDeviation);
                 sumA += (angleMapEntry.getValue().getPixelValue() * kernelValue);
                 sumB += kernelValue;
