@@ -11,21 +11,15 @@ import java.util.List;
 
 public class ImgApplication {
     public static void main(String[] args) throws Exception {
+
+        long startTime = System.currentTimeMillis();
         Request request = new Request();
-        request.setStandardDeviation(4);
-        request.setFilePath("./img/3_500_PC.tif");
+        request.setStandardDeviation(16);
+        request.setFilePath("./img/Tiff/06.tif");
 
         Processor processor = new Processor();
         processor.processCorona(request);
-    }
+        System.out.println((System.currentTimeMillis() - startTime)/1000);
 
-    public static void testAngles(){
-        Pixel pixel = new Pixel();
-        pixel.setxOffset(45);
-        pixel.setyOffset(45);
-        pixel.setQuadrant(1);
-        CoordinateUtil.updateDegrees(pixel);
-        System.out.println(pixel.getRadius());
-        System.out.println(pixel.getAngle());
     }
 }

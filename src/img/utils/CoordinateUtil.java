@@ -12,11 +12,11 @@ import java.util.List;
 
 public class CoordinateUtil {
 
-    public static void updatePolarCoordinates(Pixel pixel) {
+    public static void updatePolarCoordinates(Pixel pixel, double sd) {
         pixel.setQuadrant(findQuadrant(pixel.getX(), pixel.getY()));
         updatePixelOffsetFromSolarCenter(pixel);
-        updateRadius(pixel);
-        updateDegrees(pixel);
+        updateRadius(pixel, sd);
+        updateDegrees(pixel, sd);
     }
 
     public static void updateSolarCenter(Image image){
@@ -69,10 +69,13 @@ public class CoordinateUtil {
         return pixel;
     }
 
-    private static void updateRadius(Pixel pixel) {
+    private static void updateRadius(Pixel pixel, double sd) {
         pixel.setRadius(Math.sqrt(Math.pow(pixel.getxOffset(), 2) + Math.pow(pixel.getyOffset(), 2)));
         pixel.setRoundedRadius(round(pixel.getRadius(), 2));
-//        System.out.println("Radius: " + pixel.getRadius());
+
+        double sdDouble = 2 * sd;
+        pixel.setLowerRadius(pixel.getRadius() - sdDouble);
+        pixel.setUpperRadius(pixel.getRadius() + sdDouble);
     }
 
     private static double round(double value, int places) {
@@ -86,7 +89,7 @@ public class CoordinateUtil {
     }
 
 
-    public static void updateDegrees(Pixel pixel){
+    public static void updateDegrees(Pixel pixel, double sdDouble){
         float x = pixel.getxOffset();
         float y = pixel.getyOffset();
         int q = pixel.getQuadrant();
@@ -111,11 +114,11 @@ public class CoordinateUtil {
 
         if (x == 0){
             if (y < 0){
-                setAngleAndRoundedAngle(pixel, (-1)*DegreeConstants.RADIANS_90);
+                setAngleAndRoundedAngle(pixel, (-1)*DegreeConstants.RADIANS_90, sdDouble);
 //                System.out.println(x + "," + y);
                 return;
             } else {
-                setAngleAndRoundedAngle(pixel, DegreeConstants.RADIANS_90);
+                setAngleAndRoundedAngle(pixel, DegreeConstants.RADIANS_90,sdDouble);
 //                System.out.println(x + "," + y);
                 return;
             }
@@ -123,21 +126,24 @@ public class CoordinateUtil {
 
         if (y == 0){
             if (x > 0) {
-                setAngleAndRoundedAngle(pixel, 0);
+                setAngleAndRoundedAngle(pixel, 0, sdDouble);
 //                System.out.println(x + "," + y);
                 return;
             } else {
-                setAngleAndRoundedAngle(pixel, DegreeConstants.RADIANS_180);
+                setAngleAndRoundedAngle(pixel, DegreeConstants.RADIANS_180, sdDouble);
 //                System.out.println(x + "," + y);
                 return;
             }
         }
-        setAngleAndRoundedAngle(pixel, degrees);
+        setAngleAndRoundedAngle(pixel, degrees, sdDouble);
     }
 
-    private static void setAngleAndRoundedAngle(Pixel pixel, double degrees){
+    private static void setAngleAndRoundedAngle(Pixel pixel, double degrees, double sdDouble){
         pixel.setAngle(degrees);
         pixel.setRoundedAngle(round(pixel.getAngle(), 5));
+
+        pixel.setLowerAngle(pixel.getAngle() - (sdDouble / pixel.getRadius()));
+        pixel.setUpperAngle(pixel.getAngle() + (sdDouble / pixel.getRadius()));
     }
 
     public static double angleAddition(double a, double b){

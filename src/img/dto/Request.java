@@ -3,6 +3,7 @@ package img.dto;
 public class Request {
     private double standardDeviation;
     private String filePath;
+    private double squareSd;
 
     public double getStandardDeviation() {
         return standardDeviation;
@@ -10,6 +11,11 @@ public class Request {
 
     public void setStandardDeviation(double standardDeviation) {
         this.standardDeviation = standardDeviation;
+        updateSquareSd();
+    }
+
+    private void updateSquareSd(){
+        this.squareSd = this.standardDeviation * this.standardDeviation;
     }
 
     public String getFilePath() {
@@ -18,5 +24,9 @@ public class Request {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public double sqSd() {
+        return this.squareSd;
     }
 }

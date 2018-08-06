@@ -13,6 +13,42 @@ public class Pixel {
     private double roundedAngle;
     private double angleCooefficient;
     private double degrees;
+    private double lowerRadius;
+    private double upperRadius;
+    private double lowerAngle;
+    private double upperAngle;
+
+    public double getLowerRadius() {
+        return lowerRadius;
+    }
+
+    public void setLowerRadius(double lowerRadius) {
+        this.lowerRadius = lowerRadius;
+    }
+
+    public double getUpperRadius() {
+        return upperRadius;
+    }
+
+    public void setUpperRadius(double upperRadius) {
+        this.upperRadius = upperRadius;
+    }
+
+    public double getLowerAngle() {
+        return lowerAngle;
+    }
+
+    public void setLowerAngle(double lowerAngle) {
+        this.lowerAngle = lowerAngle;
+    }
+
+    public double getUpperAngle() {
+        return upperAngle;
+    }
+
+    public void setUpperAngle(double upperAngle) {
+        this.upperAngle = upperAngle;
+    }
 
     public double getDegrees() {
         return degrees;

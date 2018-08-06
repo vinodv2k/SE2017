@@ -14,7 +14,7 @@ public class CoordinateUtilTest {
         pixel.setX(75);
         pixel.setY(70);
 
-        CoordinateUtil.updatePolarCoordinates(pixel);
+        CoordinateUtil.updatePolarCoordinates(pixel, 1);
 
         System.out.println("X Offset: " + pixel.getxOffset());
         System.out.println("Y Offset: " + pixel.getyOffset());

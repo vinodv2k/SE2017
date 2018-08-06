@@ -16,6 +16,7 @@ public class ImageHelper {
         RenderedOp op = JAI.create("fileload", request.getFilePath());
         image.setWidth(op.getWidth());
         image.setHeight(op.getHeight());
+        System.out.println("File Read Successful");
 
         final short[] pixels = ((DataBufferUShort) op.getData().getDataBuffer()).getData();
 
@@ -48,6 +49,7 @@ public class ImageHelper {
             }
         }
 //        System.out.println(data);
+        System.out.println("Tiff To Pixel array successful");
 
         return pixelsArray;
     }

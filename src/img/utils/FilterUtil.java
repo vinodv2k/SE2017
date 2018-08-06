@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FilterUtil {
-    public static double calculateKernel(Pixel neighbourPixel, Pixel pixel, double sd){
+    public static double calculateKernel(Pixel neighbourPixel, Pixel pixel, double sqSd){
 
         double a = Math.pow((pixel.getRadius() - neighbourPixel.getRadius()), 2);
         double b = Math.pow(pixel.getRadius() * CoordinateUtil.angleDifference(pixel.getAngleCooefficient(), neighbourPixel.getAngleCooefficient()), 2);
 
         double numerator =  a + b;
-        double powerFactor = numerator / (2 * Math.pow(sd, 2));
+        double powerFactor = numerator / (2 * sqSd);
         return Math.exp( (-1) * powerFactor);
      }
 
