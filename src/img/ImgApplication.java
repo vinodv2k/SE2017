@@ -14,12 +14,11 @@ public class ImgApplication {
 
         long startTime = System.currentTimeMillis();
         Request request = new Request();
-        request.setStandardDeviation(16);
+        request.setStandardDeviation(32);
         request.setFilePath("./img/Tiff/06.tif");
-
         Processor processor = new Processor();
         processor.processCorona(request);
-        System.out.println((System.currentTimeMillis() - startTime)/1000);
+        System.out.println("Standard Deviation "+ request.getStandardDeviation() + " took "+ ((System.currentTimeMillis() - startTime)/1000) + " seconds");
 
     }
 }
