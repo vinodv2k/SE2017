@@ -14,8 +14,8 @@ public class ImgApplication {
 
         long startTime = System.currentTimeMillis();
         Request request = new Request();
-        request.setStandardDeviation(32);
-        request.setFilePath("./img/Tiff/06.tif");
+        request.setStandardDeviation(8);
+        request.setFilePath("./img/Tiff/08.tif");
         Processor processor = new Processor();
         processor.processCorona(request);
         System.out.println("Standard Deviation "+ request.getStandardDeviation() + " took "+ ((System.currentTimeMillis() - startTime)/1000) + " seconds");

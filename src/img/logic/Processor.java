@@ -30,7 +30,6 @@ public class Processor {
         this.standardDeviation = request.getStandardDeviation();
         this.sqSd = request.sqSd();
 
-        TreeMap<Double, List<Double>> radiansToAngleMap = new TreeMap<>();
         TreeMap<Double, TreeMap<Double, Pixel>> radAnglePixelMap = new TreeMap<>();
 
 //        Pixel currentPixel = null;
@@ -38,15 +37,7 @@ public class Processor {
         this.imgInfo.stream().forEach(row -> {
             row.stream().forEach(pixel -> {
                 CoordinateUtil.updatePolarCoordinates(pixel, this.standardDeviation);
-
-                if (radiansToAngleMap.get(pixel.getRoundedRadius()) != null && radiansToAngleMap.get(pixel.getRoundedRadius()).size() > 0) {
-                    radiansToAngleMap.get(pixel.getRoundedRadius()).add(pixel.getRoundedAngle());
-                } else {
-                    final List<Double> angles = new ArrayList<>();
-                    angles.add(pixel.getRoundedAngle());
-                    radiansToAngleMap.put(pixel.getRoundedRadius(), angles);
-                }
-
+                // Radius -> Angle -> Pixel
                 if (radAnglePixelMap.get(pixel.getRoundedRadius()) == null || radAnglePixelMap.get(pixel.getRoundedRadius()).size() == 0) {
                     // add new treemap
                     TreeMap<Double, Pixel> anglePixelMap = new TreeMap<Double, Pixel>();
@@ -82,7 +73,6 @@ public class Processor {
                 }
             }
         }*/
-        final int[] i = {0};
         System.out.println("Polar Coordinates updated and mapped with every pixel value");
         List<List<Integer>> filteredPixelValues = this.imgInfo.stream().map(colPixels -> {
             return colPixels.stream()
@@ -114,26 +104,28 @@ public class Processor {
         final double[] sumA = {0};
         final double[] sumB = {0};
         SortedMap<Double, TreeMap<Double, Pixel>> subMapEntry = radAnglePixelMap.subMap(currentPixel.getLowerRadius(), currentPixel.getUpperRadius());
-        subMapEntry.values().stream().forEach(angleMap -> {
-            angleMap.subMap(currentPixel.getLowerAngle(), currentPixel.getUpperAngle()).values().stream().forEach(np -> {
-                double kernelValue = FilterUtil.calculateKernel(np, currentPixel, this.sqSd);
-                sumA[0] += (kernelValue * np.getPixelValue());
-                sumB[0] += kernelValue;
-            });
-        });
-/*        for (Map.Entry<Double, TreeMap<Double, Pixel>> angleMap : subMapEntry.entrySet()) {
+/*        subMapEntry.values().stream().forEach(angleMap -> {
+            angleMap.subMap(currentPixel.getLowerAngle(), currentPixel.getUpperAngle()).values().stream()
+                    .forEach(np -> {
+                        double kernelValue = FilterUtil.calculateKernel(np, currentPixel, this.sqSd);
+                        sumA[0] += (kernelValue * np.getPixelValue());
+                        sumB[0] += kernelValue;
+                    });
+            });*/
+        for (Map.Entry<Double, TreeMap<Double, Pixel>> angleMap : subMapEntry.entrySet()) {
 //            double radius = angleMap.getKey();
             SortedMap<Double, Pixel> angleSubMap = angleMap.getValue().subMap(currentPixel.getLowerAngle(), currentPixel.getUpperAngle());
             for (Map.Entry<Double, Pixel> angleMapEntry : angleSubMap.entrySet()) {
+                if(angleMapEntry.getValue().getRadius() < 283){
+                    return 0;
+                }
                 double kernelValue = FilterUtil.calculateKernel(angleMapEntry.getValue(), currentPixel, this.sqSd);
                 sumA[0] += (angleMapEntry.getValue().getPixelValue() * kernelValue);
                 sumB[0] += kernelValue;
             }
-        }*/
-
+        }
         int subtract = sumB[0] == 0 ? 0 : Long.valueOf(Math.round(sumA[0] / sumB[0])).intValue();
-        int filteredPixelValue = currentPixel.getPixelValue() - subtract;
-        return filteredPixelValue;
+        return currentPixel.getPixelValue() - subtract;
     }
 
     private int getPixelValueOf(int x, int y) {

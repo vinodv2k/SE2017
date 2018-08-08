@@ -140,7 +140,7 @@ public class CoordinateUtil {
 
     private static void setAngleAndRoundedAngle(Pixel pixel, double degrees, double sdDouble){
         pixel.setAngle(degrees);
-        pixel.setRoundedAngle(round(pixel.getAngle(), 5));
+        pixel.setRoundedAngle(round(pixel.getAngle(), 2));
 
         pixel.setLowerAngle(pixel.getAngle() - (sdDouble / pixel.getRadius()));
         pixel.setUpperAngle(pixel.getAngle() + (sdDouble / pixel.getRadius()));
